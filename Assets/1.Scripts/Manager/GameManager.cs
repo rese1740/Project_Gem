@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -9,12 +10,21 @@ public class GameManager : MonoBehaviour
     public Transform spawnPosition;
     public GameObject enemyPrefab;
 
-    public int[] enemyCountsPerWave = { 5, 10, 15 }; // 웨이브별 소환할 적 수
-    public float spawnDelay = 1f; // 적 소환 간격
-    public float restTimeBetweenWaves = 3f; // 웨이브 간 휴식 시간
+    public int[] enemyCountsPerWave = { 5, 10, 15 }; 
+    public float spawnDelay = 1f; 
+    public float restTimeBetweenWaves = 3f;
 
+    [Header("UI")]
+    public Text spawnCountTxt;
+    public Text timerText; 
+    public float startTime = 10f;
+    private float currentTime;
+
+
+    [Header("몬스터 수")]
     private int currentWaveIndex = 0;
     public int currentSpawnCount;
+    public int maxSpawnCount = 50;
 
     void Awake()
     {
@@ -24,18 +34,39 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnEnemies());
+        currentTime = startTime;
     }
 
     void Update()
     {
         if (currentSpawnCount <= 0)
         {
-            // 몬스터가 모두 소멸하면 휴식 시간을 주고, 다음 웨이브 시작
-            if (!IsInvoking("NextWave")) // 이미 다음 웨이브가 진행 중이 아닌지 체크
+            if (!IsInvoking("NextWave")) 
             {
                 Invoke("NextWave", restTimeBetweenWaves);
             }
         }
+        spawnCountTxt.text = $"{currentSpawnCount}/{maxSpawnCount}";
+
+        if(currentSpawnCount >= maxSpawnCount)
+        {
+            timerText.gameObject.SetActive(true);
+            UpdateTimerUI();
+            if (currentTime > 0)
+            {
+                currentTime -= Time.deltaTime;
+                if (currentTime < 0)
+                {
+                    SceneManager.LoadScene("Test");
+                }
+            }
+        }
+        else
+        {
+            timerText.gameObject.SetActive(false);
+            currentTime = 0;
+        }
+        
     }
 
     IEnumerator SpawnEnemies()
@@ -66,5 +97,10 @@ public class GameManager : MonoBehaviour
             Debug.Log("모든 웨이브 클리어!");
             // 게임 클리어 처리 가능
         }
+    }
+
+    void UpdateTimerUI()
+    {
+        timerText.text = Mathf.Ceil(currentTime).ToString(); // 소수점 없이 표시
     }
 }
