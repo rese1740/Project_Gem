@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4343326945629029994}
   - component: {fileID: 3209538415171573679}
   m_Layer: 5
-  m_Name: Dice
+  m_Name: Blue_Jam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,8 +72,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b03b694dac266d744a4e6f8c2f6add0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 10
-  attackSpeed: 1
+  itemData: {fileID: 11400000, guid: 50b9c82eb47da5c45927fad7d07b31b8, type: 2}
+  image: {fileID: 4343326945629029994}
 --- !u!114 &4343326945629029994
 MonoBehaviour:
   m_ObjectHideFlags: 0
