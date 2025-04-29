@@ -60,15 +60,14 @@ public class Jam : MonoBehaviour
         }
     }
 
-    // 랭크를 올리고 아이콘을 업데이트
     public void LevelUp()
     {
-        if (currentRank < 7)  // 최대 7까지 랭크 상승
+        if (currentRank < itemData.maxRank)
         {
             currentRank++;
-            attackDamage = itemData.attackValue * currentRank;  // 공격력 갱신
-            attackSpeed = itemData.attackSpeed;   // 공격 속도 갱신
-            UpdateIcon();  // 랭크에 맞는 아이콘으로 업데이트
+            attackDamage = itemData.attackValue;
+            attackSpeed = itemData.attackSpeed;
+            UpdateIcon();
         }
     }
 }

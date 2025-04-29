@@ -8,5 +8,6 @@ public class JamData : ScriptableObject
     public float attackValue;       // 공격력
     public float attackSpeed;       // 공격 속도
     public int rank;
+    public int maxRank = 4; 
 }
 

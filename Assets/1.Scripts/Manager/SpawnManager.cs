@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
     public List<GameObject> slotList = new List<GameObject>();    // 슬롯 오브젝트들 (DroppableUI 붙어 있음)
     public GameObject[] prefabList;                                // 생성할 UI 프리팹들
 
-    /// <summary>
-    /// 빈 슬롯 중 하나에 랜덤한 프리팹을 스폰
-    /// </summary>
+    public float _cost;
+
     public void SpawnRandomPrefabInRandomSlot()
     {
-        // 빈 슬롯만 추출
+        if (GameManager.Instance.gold < _cost)
+        {
+            Debug.Log("골드가 부족합니다!");
+            return;
+        }
         List<GameObject> emptySlots = new List<GameObject>();
 
         foreach (var slot in slotList)
@@ -38,5 +42,6 @@ public class SpawnManager : MonoBehaviour
         GameObject instance = Instantiate(randomPrefab, randomSlot.transform);
         RectTransform rect = instance.GetComponent<RectTransform>();
         rect.position = randomSlot.GetComponent<RectTransform>().position;
+        GameManager.Instance.gold -= _cost;
     }
 }
