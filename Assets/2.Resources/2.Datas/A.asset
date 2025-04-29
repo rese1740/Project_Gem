@@ -13,6 +13,14 @@ MonoBehaviour:
   m_Name: A
   m_EditorClassIdentifier: 
   itemID: BlueJam
-  icon: {fileID: 21300000, guid: 5938bd5d018267a45aa0962f00fbabe7, type: 3}
+  rankIcons:
+  - {fileID: 21300000, guid: 2b4b620cb7bba774ba44e59fe5255972, type: 3}
+  - {fileID: 21300000, guid: 91a475aab2d5c15429a4bcc9ecbfc4f5, type: 3}
+  - {fileID: 21300000, guid: 98f62a6ded2e03244aaf856e3cb20aa7, type: 3}
+  - {fileID: 21300000, guid: c2f38c4522c6cb2418e1e818cede3cdb, type: 3}
+  - {fileID: 21300000, guid: 5938bd5d018267a45aa0962f00fbabe7, type: 3}
+  - {fileID: 21300000, guid: 1fb82d9783c752c45b2a08cb9ca490bd, type: 3}
+  - {fileID: 21300000, guid: 3e1be8826b3217a47968b80f40880d34, type: 3}
   attackValue: 10
   attackSpeed: 10
+  rank: 1
