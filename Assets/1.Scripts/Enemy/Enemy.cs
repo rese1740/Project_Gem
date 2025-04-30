@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Enemy : MonoBehaviour
     public float currentHp;
     public float moveSpeed;
     private bool isDotActive = false;
+    public Text hpTxt;
 
     private int currentWaypointIndex = 0;
 
@@ -30,6 +32,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         Move();
+        hpTxt.text = currentHp.ToString();
     }
 
     void Move()
@@ -39,12 +42,6 @@ public class Enemy : MonoBehaviour
         Transform target = Waypoint.Points[currentWaypointIndex];
         Vector3 direction = target.position - transform.position;
 
-        // 2D 회전 (방향만 맞춰주기)
-        if (direction != Vector3.zero)
-        {
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
-        }
 
         // 이동
         transform.position += direction.normalized * moveSpeed * Time.deltaTime;
