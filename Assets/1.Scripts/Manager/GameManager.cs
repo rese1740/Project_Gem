@@ -24,9 +24,15 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     public Text spawnCountTxt;
-    public Text timerText;
+    public Text countDownTxt;
+    public Text timerTxt;
+
+    [Header("시간")]
     public float startTime = 10f;
     private float currentTime;
+    private int minutes = 0;
+    private int seconds = 0;
+    private bool isRunning = false;
 
     [Header("몬스터 수")]
     private int currentWaveIndex = 0;
@@ -42,7 +48,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         currentTime = startTime;
-        
+        StartCoroutine(StopWatch());
         StartWave();
     }
 
@@ -53,7 +59,7 @@ public class GameManager : MonoBehaviour
 
         if (currentEnemyCount >= maxSpawnCount)
         {
-            timerText.gameObject.SetActive(true);
+            countDownTxt.gameObject.SetActive(true);
             UpdateTimerUI();
             if (currentTime > 0)
             {
@@ -64,17 +70,38 @@ public class GameManager : MonoBehaviour
                 }
                 else if (currentTime <= 3)
                 {
-                    timerText.color = Color.red;
+                    countDownTxt.color = Color.red;
                 }
             }
         }
         else
         {
-            timerText.gameObject.SetActive(false);
+            countDownTxt.gameObject.SetActive(false);
             currentTime = startTime;
         }
+        
     }
 
+    IEnumerator StopWatch()
+    {
+        isRunning = true;
+
+        while (isRunning)
+        {
+            timerTxt.text = $"{minutes:D2}:{seconds:D2}";
+            yield return new WaitForSeconds(1f);
+
+            seconds++;
+            if (seconds >= 60)
+            {
+                seconds = 0;
+                minutes++;
+            }
+        }
+       
+    }
+
+    #region Wave 진행
     void StartWave()
     {
         if (currentWaveIndex < waves.Length)
@@ -128,9 +155,9 @@ public class GameManager : MonoBehaviour
         currentWaveIndex++;
         StartWave();
     }
-
+    #endregion
     void UpdateTimerUI()
     {
-        timerText.text = Mathf.Ceil(currentTime).ToString();
+        countDownTxt.text = Mathf.Ceil(currentTime).ToString();
     }
 }

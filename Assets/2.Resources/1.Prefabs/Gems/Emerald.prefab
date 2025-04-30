@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4343326945629029994}
   - component: {fileID: 3209538415171573679}
   m_Layer: 5
-  m_Name: Ruby
+  m_Name: Emerald
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751cb602540b166469762de4ef45b6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 8ad00d5c4170ad7448a6df9506fa9055, type: 2}
+  itemData: {fileID: 11400000, guid: 540f0ff20a4736c4093bdabeb7964ae5, type: 2}
   spriteRenderer: {fileID: 4343326945629029994}
   attackDamage: 0
   attackSpeed: 0

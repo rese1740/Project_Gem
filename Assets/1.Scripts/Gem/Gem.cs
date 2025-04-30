@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ public class Gem : MonoBehaviour
     public Image spriteRenderer;  // 아이콘을 보여줄 SpriteRenderer
     public float attackDamage;  // 공격력
     public float attackSpeed;   // 공격 속도
+    public float dotDamage;
 
     private float nextAttackTime = 0f;  // 공격 주기
 
@@ -18,6 +20,7 @@ public class Gem : MonoBehaviour
 
         if (itemData != null)
         {
+            dotDamage = itemData.dotDamage;
             attackDamage = itemData.attackValue;
             attackSpeed = itemData.attackSpeed;
             UpdateIcon();  
@@ -39,15 +42,32 @@ public class Gem : MonoBehaviour
 
         foreach (var enemy in enemies)
         {
-            // 적이 있으면 공격
             if (enemy != null)
             {
-                enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+                Enemy enemyScript = enemy.GetComponent<Enemy>();
+
+                // 즉시 피해
+                enemyScript.TakeDamage(attackDamage);
+
+                // 도트뎀 적용: 이건 Gem이 직접 관리해야 함
+                StartCoroutine(DealDotDamage(enemyScript, dotDamage, 3, 1f));
             }
         }
     }
 
-    // 아이템의 랭크에 맞는 아이콘을 업데이트
+    IEnumerator DealDotDamage(Enemy enemy, float damagePerTick, int tickCount, float interval)
+    {
+        for (int i = 0; i < tickCount; i++)
+        {
+            yield return new WaitForSeconds(interval);
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damagePerTick);
+            }
+        }
+    }
+
+    #region 합체
     void UpdateIcon()
     {
         if (itemData != null && spriteRenderer != null && currentRank >= 1 && currentRank <= itemData.rankIcons.Length)
@@ -66,4 +86,5 @@ public class Gem : MonoBehaviour
             UpdateIcon();
         }
     }
+    #endregion
 }

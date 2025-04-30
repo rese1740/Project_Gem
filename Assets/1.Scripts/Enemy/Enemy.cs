@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -7,6 +8,7 @@ public class Enemy : MonoBehaviour
     public float maxHp;
     public float currentHp;
     public float moveSpeed;
+    private bool isDotActive = false;
 
     private int currentWaypointIndex = 0;
 
@@ -63,12 +65,34 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        Debug.Log(currentHp);
         currentHp -= damage;
+        Debug.Log($"피해 {damage}, 남은 체력 {currentHp}");
+
         if (currentHp <= 0f)
         {
             Die();
         }
+    }
+
+
+    IEnumerator DealDotDamage(float damagePerTick, int tickCount, float interval)
+    {
+        isDotActive = true;
+
+        for (int i = 0; i < tickCount; i++)
+        {
+            yield return new WaitForSeconds(interval);
+            currentHp -= damagePerTick;
+
+            if (currentHp <= 0f)
+            {
+                Die();
+                isDotActive = false;
+                yield break;
+            }
+        }
+
+        isDotActive = false;
     }
 
     void Die()
