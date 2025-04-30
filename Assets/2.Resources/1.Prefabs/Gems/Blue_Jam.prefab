@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5473986342366325602}
   - component: {fileID: 1704886118251768793}
   - component: {fileID: 3740452587153465963}
-  - component: {fileID: 6566807795465270794}
+  - component: {fileID: 5700576853721921948}
   - component: {fileID: 4343326945629029994}
   - component: {fileID: 3209538415171573679}
   m_Layer: 5
@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63cb5e24c1bfb64180790004c904548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6566807795465270794
+--- !u!114 &5700576853721921948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,13 +69,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8192765983206669830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b03b694dac266d744a4e6f8c2f6add0d, type: 3}
+  m_Script: {fileID: 11500000, guid: 751cb602540b166469762de4ef45b6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 50b9c82eb47da5c45927fad7d07b31b8, type: 2}
   spriteRenderer: {fileID: 4343326945629029994}
   attackDamage: 0
   attackSpeed: 0
+  currentRank: 0
 --- !u!114 &4343326945629029994
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -29,7 +29,7 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler, IDropHandler, IP
     {
         if (eventData.pointerDrag != null)
         {
-            Jam slotJam = transform.GetComponentInChildren<Jam>();
+            Gem slotJam = transform.GetComponentInChildren<Gem>();
 
             if (slotJam == null)  
             {
@@ -38,7 +38,7 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler, IDropHandler, IP
             }
             else
             {
-                Jam draggedItemJam = eventData.pointerDrag.GetComponent<Jam>(); 
+                Gem draggedItemJam = eventData.pointerDrag.GetComponent<Gem>(); 
                 if (draggedItemJam != null)
                 {
                     // 슬롯과 드래그된 아이템의 currentRank가 동일한지 비교

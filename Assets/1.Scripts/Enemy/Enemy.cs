@@ -3,14 +3,19 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [Header("Enemy Stats")]
-    public float maxHp = 100f;
+    public EnemyData EnemyData;
+    public float maxHp;
     public float currentHp;
-    public float moveSpeed = 2f;
+    public float moveSpeed;
 
     private int currentWaypointIndex = 0;
 
     void Start()
     {
+        maxHp =EnemyData.maxHp;
+        currentHp =EnemyData.currentHp;
+        moveSpeed =EnemyData.moveSpeed;
+
         currentHp = maxHp;
 
         if (Waypoint.Points == null || Waypoint.Points.Length == 0)

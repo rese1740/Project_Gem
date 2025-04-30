@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Item/ItemData")]
-public class JamData : ScriptableObject
+[CreateAssetMenu(menuName = "Gem/GemData")]
+public class GemData : ScriptableObject
 {
     public string itemID;           // 아이템 구분용 ID
     public Sprite[] rankIcons;             // 아이템 아이콘

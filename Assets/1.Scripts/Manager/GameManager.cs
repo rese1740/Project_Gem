@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         spawnCountTxt.text = $"{currentEnemyCount}/{maxSpawnCount}";
         goldText.text = gold.ToString();
 
-        if (currentSpawnCount >= maxSpawnCount)
+        if (currentEnemyCount >= maxSpawnCount)
         {
             timerText.gameObject.SetActive(true);
             UpdateTimerUI();
