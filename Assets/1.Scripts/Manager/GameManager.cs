@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Data;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,25 +8,25 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [Header("스폰 설정")]
     public Transform spawnPosition;
-    public GameObject enemyPrefab;
+    public GameObject enemy1Prefab;
+    public GameObject enemy2Prefab;
+    public GameObject enemy3Prefab;
 
-    public int[] enemyCountsPerWave = { 5, 10, 15 };
-    public float spawnDelay = 1f;
-    public float restTimeBetweenWaves = 3f;
+    public WaveData[] waves; // 여러 웨이브 데이터를 받아올 수 있도록 배열로
+    private WaveData currentWave;
 
     [Header("재화")]
     public float gold;
     public float enemyGold;
     public Text goldText;
 
-
     [Header("UI")]
     public Text spawnCountTxt;
     public Text timerText;
     public float startTime = 10f;
     private float currentTime;
-
 
     [Header("몬스터 수")]
     private int currentWaveIndex = 0;
@@ -41,13 +41,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(SpawnEnemies());
         currentTime = startTime;
+        
+        StartWave();
     }
 
     void Update()
     {
-
         spawnCountTxt.text = $"{currentEnemyCount}/{maxSpawnCount}";
         goldText.text = gold.ToString();
 
@@ -71,50 +71,66 @@ public class GameManager : MonoBehaviour
         else
         {
             timerText.gameObject.SetActive(false);
-            currentTime = 10;
+            currentTime = startTime;
         }
-
     }
 
-
-    IEnumerator SpawnEnemies()
+    void StartWave()
     {
-        int spawnCount = enemyCountsPerWave[currentWaveIndex];
-        currentSpawnCount = spawnCount;  // 해당 웨이브의 몬스터 수를 설정
-        currentEnemyCount += currentSpawnCount;
-
-        for (int i = 0; i < spawnCount; i++)
+        if (currentWaveIndex < waves.Length)
         {
-            Vector3 spawnPos = spawnPosition.position;
-            spawnPos.z = 0f; // 2D이니까 z = 0 고정
-            Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
-            currentSpawnCount--; // 몬스터가 하나 스폰되면 남은 몬스터 수를 감소
-            yield return new WaitForSeconds(spawnDelay);  // 각 몬스터 간의 대기 시간
-        }
-
-        // 웨이브가 끝나면 잠시 대기 후 다음 웨이브 시작
-        yield return new WaitForSeconds(restTimeBetweenWaves);  // 웨이브 사이의 휴식 시간
-        NextWave();
-    }
-
-    void NextWave()
-    {
-        currentWaveIndex++;
-
-        if (currentWaveIndex < enemyCountsPerWave.Length)
-        {
-            Debug.Log("휴식 후 다음 웨이브 시작!");
+            currentWave = waves[currentWaveIndex];
             StartCoroutine(SpawnEnemies());
         }
         else
         {
             Debug.Log("모든 웨이브 클리어!");
-            // 게임 클리어 처리 가능
         }
+    }
+
+    IEnumerator SpawnEnemies()
+    {
+        List<GameObject> spawnList = new List<GameObject>();
+        
+
+        for (int i = 0; i < currentWave.enemy1Counts; i++) spawnList.Add(enemy1Prefab);
+        for (int i = 0; i < currentWave.enemy2Counts; i++) spawnList.Add(enemy2Prefab);
+        for (int i = 0; i < currentWave.enemy3Counts; i++) spawnList.Add(enemy3Prefab);
+
+        for (int i = 0; i < spawnList.Count; i++)
+        {
+            int rand = Random.Range(i, spawnList.Count);
+            var temp = spawnList[i];
+            spawnList[i] = spawnList[rand];
+            spawnList[rand] = temp;
+        }
+        currentEnemyCount = spawnList.Count;
+        foreach (var enemyPrefab in spawnList)
+        {
+            SpawnEnemy(enemyPrefab);
+            yield return new WaitForSeconds(currentWave.spawnDelay);
+        }
+
+        yield return new WaitForSeconds(currentWave.restTimeBetweenWaves);
+        NextWave();
+    }
+
+    void SpawnEnemy(GameObject prefab)
+    {
+        Vector3 spawnPos = spawnPosition.position;
+        spawnPos.z = 0f;
+        Instantiate(prefab, spawnPos, Quaternion.identity);
+        currentSpawnCount--;
+    }
+
+    void NextWave()
+    {
+        currentWaveIndex++;
+        StartWave();
     }
 
     void UpdateTimerUI()
     {
-        timerText.text = Mathf.Ceil(currentTime).ToString(); // 소수점 없이 표시
+        timerText.text = Mathf.Ceil(currentTime).ToString();
     }
 }

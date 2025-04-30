@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f054cddde79ad5e4484a9c75cf9b8ac5, type: 3}
   m_Name: Wave1
   m_EditorClassIdentifier: 
-  enemy1Counts: 0
-  enemy2Counts: 0
-  enemy3Counts: 0
-  spawnDelay: 1
+  enemy1Counts: 10
+  enemy2Counts: 10
+  enemy3Counts: 10
+  spawnDelay: 1.5
   restTimeBetweenWaves: 3

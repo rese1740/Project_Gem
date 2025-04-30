@@ -2150,16 +2150,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPosition: {fileID: 774745737}
-  enemyPrefab: {fileID: 4922380983373910917, guid: fbaa2574851a5ab4fbb131eb3b93fe63, type: 3}
-  enemyCountsPerWave: 050000000a0000000f000000
-  spawnDelay: 1
-  restTimeBetweenWaves: 3
+  enemy1Prefab: {fileID: 4922380983373910917, guid: fbaa2574851a5ab4fbb131eb3b93fe63, type: 3}
+  enemy2Prefab: {fileID: 4922380983373910917, guid: cffb1b31c611ea840a4686970f025d70, type: 3}
+  enemy3Prefab: {fileID: 4922380983373910917, guid: 6a6d0740a0ea94f4eb529e307577f1f8, type: 3}
+  waves:
+  - {fileID: 11400000, guid: d3832e2b056a1514883ef42dacf5e195, type: 2}
+  - {fileID: 11400000, guid: eb4c732527c9d9b42903c7ccf32dd12b, type: 2}
+  - {fileID: 11400000, guid: dc726e69ad10ad34987d5dffc45bf96c, type: 2}
   gold: 10
   enemyGold: 2
   goldText: {fileID: 987842745}
   spawnCountTxt: {fileID: 1219438841}
   timerText: {fileID: 2143169871}
   startTime: 10
+  currentEnemyCount: 0
   currentSpawnCount: 0
   maxSpawnCount: 50
 --- !u!4 &1494975633
