@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4343326945629029994}
   - component: {fileID: 3209538415171573679}
   m_Layer: 5
-  m_Name: Blue_Jam
+  m_Name: Gem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,6 +76,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 4343326945629029994}
   attackDamage: 0
   attackSpeed: 0
+  dotDamage: 0
   currentRank: 0
 --- !u!114 &4343326945629029994
 MonoBehaviour:

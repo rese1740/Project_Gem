@@ -19,6 +19,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: da86254fdc90eec49b264a8bc3c36572, type: 3}
   - {fileID: 21300000, guid: 5938bd5d018267a45aa0962f00fbabe7, type: 3}
   attackValue: 10
-  attackSpeed: 4
+  dotDamage: 0
+  attackSpeed: 1
+  attackRange: 50
   rank: 1
   maxRank: 4

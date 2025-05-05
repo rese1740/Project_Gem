@@ -22,23 +22,23 @@ public class GameManager : MonoBehaviour
     public float enemyGold;
     public Text goldText;
 
-    [Header("UI")]
-    public Text spawnCountTxt;
-    public Text countDownTxt;
-    public Text timerTxt;
+    [Header("Wave")]
+    private int currentWaveIndex = 0;
+    private int displayWaveIndex = 0;
+    public Text waveTxt;
+    public Text restTxt;
 
     [Header("시간")]
     public float startTime = 10f;
     private float currentTime;
-    private int minutes = 0;
-    private int seconds = 0;
-    private bool isRunning = false;
+    public float sec = 0f;
 
     [Header("몬스터 수")]
-    private int currentWaveIndex = 0;
     public int currentEnemyCount;
     public int currentSpawnCount;
     public int maxSpawnCount = 50;
+    public Text spawnCountTxt;
+    public Text countDownTxt;
 
     void Awake()
     {
@@ -48,7 +48,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         currentTime = startTime;
-        StartCoroutine(StopWatch());
         StartWave();
     }
 
@@ -79,31 +78,18 @@ public class GameManager : MonoBehaviour
             countDownTxt.gameObject.SetActive(false);
             currentTime = startTime;
         }
+
+        waveTxt.text = $"{currentWaveIndex} Wave";
+        restTxt.text = sec.ToString();
         
     }
 
-    IEnumerator StopWatch()
-    {
-        isRunning = true;
-
-        while (isRunning)
-        {
-            timerTxt.text = $"{minutes:D2}:{seconds:D2}";
-            yield return new WaitForSeconds(1f);
-
-            seconds++;
-            if (seconds >= 60)
-            {
-                seconds = 0;
-                minutes++;
-            }
-        }
-       
-    }
+ 
 
     #region Wave 진행
     void StartWave()
     {
+        displayWaveIndex = currentWaveIndex += 1;
         if (currentWaveIndex < waves.Length)
         {
             currentWave = waves[currentWaveIndex];
@@ -131,13 +117,15 @@ public class GameManager : MonoBehaviour
             spawnList[i] = spawnList[rand];
             spawnList[rand] = temp;
         }
-        currentEnemyCount = spawnList.Count;
+        currentSpawnCount = spawnList.Count;
         foreach (var enemyPrefab in spawnList)
         {
             SpawnEnemy(enemyPrefab);
             yield return new WaitForSeconds(currentWave.spawnDelay);
         }
 
+        StartCoroutine(TimerDown());
+        restTxt.gameObject.SetActive(true);
         yield return new WaitForSeconds(currentWave.restTimeBetweenWaves);
         NextWave();
     }
@@ -148,6 +136,7 @@ public class GameManager : MonoBehaviour
         spawnPos.z = 0f;
         Instantiate(prefab, spawnPos, Quaternion.identity);
         currentSpawnCount--;
+        currentEnemyCount++;
     }
 
     void NextWave()
@@ -156,6 +145,18 @@ public class GameManager : MonoBehaviour
         StartWave();
     }
     #endregion
+
+    IEnumerator TimerDown()
+    {
+        sec = 20;
+        for(int i = 0; i < currentWave.restTimeBetweenWaves; i++)
+        {
+         sec -= 1;
+         yield return new WaitForSeconds(1f);
+        }
+        restTxt.gameObject.SetActive(false);
+    }
+
     void UpdateTimerUI()
     {
         countDownTxt.text = Mathf.Ceil(currentTime).ToString();

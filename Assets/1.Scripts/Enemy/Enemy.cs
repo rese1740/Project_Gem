@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public float currentHp;
     public float moveSpeed;
     private bool isDotActive = false;
+    public bool isDead = false;
     public Text hpTxt;
 
     private int currentWaypointIndex = 0;
@@ -62,34 +63,16 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        if(isDead) return;
+
         currentHp -= damage;
-        Debug.Log($"피해 {damage}, 남은 체력 {currentHp}");
+       
 
         if (currentHp <= 0f)
         {
+            isDead = true;
             Die();
         }
-    }
-
-
-    IEnumerator DealDotDamage(float damagePerTick, int tickCount, float interval)
-    {
-        isDotActive = true;
-
-        for (int i = 0; i < tickCount; i++)
-        {
-            yield return new WaitForSeconds(interval);
-            currentHp -= damagePerTick;
-
-            if (currentHp <= 0f)
-            {
-                Die();
-                isDotActive = false;
-                yield break;
-            }
-        }
-
-        isDotActive = false;
     }
 
     void Die()

@@ -1,60 +1,102 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Gem : MonoBehaviour
 {
-    public GemData itemData;  // 아이템 데이터
-    public Image spriteRenderer;  // 아이콘을 보여줄 SpriteRenderer
-    public float attackDamage;  // 공격력
-    public float attackSpeed;   // 공격 속도
+    public GemData itemData;
+    public SpriteRenderer spriteRenderer;
+    public float attackDamage;
+    public float attackSpeed;
+    public float attackRange;
     public float dotDamage;
 
-    private float nextAttackTime = 0f;  // 공격 주기
+    private float nextAttackTime = 0f;
+    private Enemy currentTarget = null;  // 현재 타겟을 저장할 변수
 
-     public int currentRank;
+    public int currentRank;
 
     void Start()
     {
-        currentRank = itemData.rank; 
-
+        currentRank = itemData.rank;
+        SetTargetToClosestEnemy();
         if (itemData != null)
         {
             dotDamage = itemData.dotDamage;
             attackDamage = itemData.attackValue;
             attackSpeed = itemData.attackSpeed;
-            UpdateIcon();  
+            attackRange = itemData.attackRange;
+            UpdateIcon();
         }
     }
 
     void Update()
     {
-        if (Time.time >= nextAttackTime)
+        // 공격이 가능한 시간이고, 타겟이 있을 때만 공격
+        if (Time.time >= nextAttackTime && currentTarget != null)
         {
+            // 공격 수행
             Attack();
-            nextAttackTime = Time.time + attackSpeed;  // 공격 속도에 맞게 주기 설정
+            nextAttackTime = Time.time + attackSpeed;
+        }
+        else if (currentTarget == null)
+        {
+            // 타겟이 없으면 새 타겟을 설정
+            SetTargetToClosestEnemy();
         }
     }
 
     void Attack()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        foreach (var enemy in enemies)
+        if (currentTarget != null)
         {
-            if (enemy != null)
+            // 타겟이 죽었거나 범위를 벗어난 경우, 새 타겟을 설정
+            if (currentTarget.isDead || Vector3.Distance(transform.position, currentTarget.transform.position) > attackRange)
             {
-                Enemy enemyScript = enemy.GetComponent<Enemy>();
-
-                // 즉시 피해
-                enemyScript.TakeDamage(attackDamage);
-
-                // 도트뎀 적용: 이건 Gem이 직접 관리해야 함
-                StartCoroutine(DealDotDamage(enemyScript, dotDamage, 3, 1f));
+                SetTargetToClosestEnemy();  // 새 타겟 설정
             }
+
+            // 타겟이 유효하면 공격
+            if (currentTarget != null)
+            {
+                currentTarget.TakeDamage(attackDamage);
+                StartCoroutine(DealDotDamage(currentTarget, dotDamage, 3, 1f));
+            }
+        }
+        else
+        {
+            Debug.Log("No target to attack!");  // 타겟이 없을 때 로그 출력
         }
     }
 
+
+    public void SetTargetToClosestEnemy()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject closestEnemy = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (var enemy in enemies)
+        {
+            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestEnemy = enemy;
+            }
+        }
+
+        if (closestEnemy != null)
+        {
+            currentTarget = closestEnemy.GetComponent<Enemy>();
+        }
+        else
+        {
+            Debug.Log("No enemies found!");
+        }
+    }
+
+
+    // 도트 데미지 코루틴
     IEnumerator DealDotDamage(Enemy enemy, float damagePerTick, int tickCount, float interval)
     {
         for (int i = 0; i < tickCount; i++)

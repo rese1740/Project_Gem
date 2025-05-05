@@ -1,44 +1,45 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class SpawnManager : MonoBehaviour
+public class SpawnManagerUI : MonoBehaviour
 {
-    public List<Transform> spawnPoints;           // 오브젝트를 소환할 수 있는 위치들 (월드 상의 Transform)
-    public GameObject[] prefabList;               // 생성할 게임 오브젝트 프리팹들
-    public float _cost;
+    public List<Transform> uiSlots;             // UI 슬롯들 (예: 빈 카드 자리들)
+    public GameObject[] cardPrefabList;         // 생성할 카드 프리팹 (UI용 프리팹, Image/Text 포함)
+    public float cost;
 
-    public void SpawnRandomPrefabAtRandomPoint()
+    public void SpawnRandomCardInEmptySlot()
     {
-        if (GameManager.Instance.gold < _cost)
+        if (GameManager.Instance.gold < cost)
         {
             Debug.Log("골드가 부족합니다!");
             return;
         }
 
-        List<Transform> emptyPoints = new List<Transform>();
+        List<Transform> emptySlots = new List<Transform>();
 
-        foreach (var point in spawnPoints)
+        foreach (var slot in uiSlots)
         {
-            if (point.childCount == 0)
+            if (slot.childCount == 0)
             {
-                emptyPoints.Add(point);
+                emptySlots.Add(slot);
             }
         }
 
-        if (emptyPoints.Count == 0)
+        if (emptySlots.Count == 0)
         {
-            Debug.Log("빈 스폰 포인트가 없습니다.");
+            Debug.Log("빈 슬롯이 없습니다.");
             return;
         }
 
-        // 랜덤 프리팹과 포인트 선택
-        GameObject randomPrefab = prefabList[Random.Range(0, prefabList.Length)];
-        Transform randomPoint = emptyPoints[Random.Range(0, emptyPoints.Count)];
+        // 랜덤 카드 프리팹과 슬롯 선택
+        GameObject randomCardPrefab = cardPrefabList[Random.Range(0, cardPrefabList.Length)];
+        Transform randomSlot = emptySlots[Random.Range(0, emptySlots.Count)];
 
-        // 프리팹 인스턴스 생성 및 위치 설정
-        GameObject instance = Instantiate(randomPrefab, randomPoint.position, Quaternion.identity);
-        instance.transform.SetParent(randomPoint); // 포인트에 자식으로 넣으면 중복 방지 가능
+        // 카드 인스턴스 생성
+        GameObject cardInstance = Instantiate(randomCardPrefab, randomSlot);
+        cardInstance.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
 
-        GameManager.Instance.gold -= _cost;
+        GameManager.Instance.gold -= cost;
     }
 }
