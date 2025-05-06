@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
             currentTime = startTime;
         }
 
-        waveTxt.text = $"{currentWaveIndex} Wave";
+        waveTxt.text = $"{displayWaveIndex} Wave";
         restTxt.text = sec.ToString();
         
     }
@@ -89,10 +89,11 @@ public class GameManager : MonoBehaviour
     #region Wave ม๘วเ
     void StartWave()
     {
-        displayWaveIndex = currentWaveIndex += 1;
+        
         if (currentWaveIndex < waves.Length)
         {
             currentWave = waves[currentWaveIndex];
+            displayWaveIndex++;
             StartCoroutine(SpawnEnemies());
         }
         else
@@ -104,8 +105,8 @@ public class GameManager : MonoBehaviour
     IEnumerator SpawnEnemies()
     {
         List<GameObject> spawnList = new List<GameObject>();
-        
-
+        Debug.Log(currentWave);
+   
         for (int i = 0; i < currentWave.enemy1Counts; i++) spawnList.Add(enemy1Prefab);
         for (int i = 0; i < currentWave.enemy2Counts; i++) spawnList.Add(enemy2Prefab);
         for (int i = 0; i < currentWave.enemy3Counts; i++) spawnList.Add(enemy3Prefab);
