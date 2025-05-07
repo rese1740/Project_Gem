@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 85603f218c5087443a3140eb75448197, type: 3}
-  m_Name: Ruby
+  m_Name: DiaMond
   m_EditorClassIdentifier: 
-  itemID: Ruby
+  itemID: Sapphire
   rankIcons:
-  - {fileID: 21300000, guid: 5b3a1c4f2d2e1f846a6e76cd2c5aa23b, type: 3}
-  - {fileID: 21300000, guid: 73be31b43671a48419b4262ad1d3a869, type: 3}
-  - {fileID: 21300000, guid: a81346d5e634cb5488aaf5635cc229a0, type: 3}
-  - {fileID: 21300000, guid: 66eb32c73d649cd4f9fbd5f3e032498f, type: 3}
+  - {fileID: 21300000, guid: a78829c9f8116cf42b5f0fb1b09be313, type: 3}
+  - {fileID: 21300000, guid: e39febd05ac08a54e89646a92cbbdc7e, type: 3}
+  - {fileID: 21300000, guid: 8c5cb1ef8558d0a4a94979b904697b05, type: 3}
+  - {fileID: 21300000, guid: def4de0560faecd4391f9c8db825de08, type: 3}
   maxRank: 4
   rank: 1
   statsPerRank:
@@ -26,22 +26,22 @@ MonoBehaviour:
     slowValue: 0
     attackSpeed: 0
     attackRange: 0
-    criValue: 0
+    criValue: 0.5
   - attackValue: 0
     dotDamage: 0
     slowValue: 0
     attackSpeed: 0
     attackRange: 0
-    criValue: 0
+    criValue: 0.5
   - attackValue: 0
     dotDamage: 0
     slowValue: 0
     attackSpeed: 0
     attackRange: 0
-    criValue: 0
+    criValue: 0.5
   - attackValue: 0
     dotDamage: 0
     slowValue: 0
     attackSpeed: 0
     attackRange: 0
-    criValue: 0
+    criValue: 0.5

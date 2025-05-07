@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SpawnManager2D : MonoBehaviour
@@ -6,7 +7,13 @@ public class SpawnManager2D : MonoBehaviour
     public List<Transform> spawnPoints;             // 2D 상에 카드가 배치될 위치들
     public GameObject[] cardPrefabList;             // 스프라이트 기반 2D 카드 프리팹들
     public float cost;
+    [SerializeField] private TextMeshProUGUI requiredGold;
 
+
+    private void Update()
+    {
+        requiredGold.text = cost.ToString();
+    }
     public void SpawnRandomCardAtEmptyPoint()
     {
         if (GameManager.Instance.gold < cost)
@@ -40,5 +47,6 @@ public class SpawnManager2D : MonoBehaviour
         cardInstance.transform.SetParent(randomPoint);  // 부모 설정으로 슬롯 정보 유지
 
         GameManager.Instance.gold -= cost;
+        cost += 2;
     }
 }

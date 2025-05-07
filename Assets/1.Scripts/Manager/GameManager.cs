@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,36 +10,36 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [Header("스폰 설정")]
-    public Transform spawnPosition;
-    public GameObject enemy1Prefab;
-    public GameObject enemy2Prefab;
-    public GameObject enemy3Prefab;
+    [SerializeField] private Transform spawnPosition;
+    [SerializeField] private GameObject enemy1Prefab;
+    [SerializeField] private GameObject enemy2Prefab;
+    [SerializeField] private GameObject enemy3Prefab;
 
-    public WaveData[] waves; // 여러 웨이브 데이터를 받아올 수 있도록 배열로
+    [SerializeField] private WaveData[] waves; // 여러 웨이브 데이터를 받아올 수 있도록 배열로
     private WaveData currentWave;
 
     [Header("재화")]
     public float gold;
-    public float enemyGold;
-    public Text goldText;
+    [SerializeField] private Text goldText;
+
 
     [Header("Wave")]
     private int currentWaveIndex = 0;
     private int displayWaveIndex = 0;
-    public Text waveTxt;
-    public Text restTxt;
+    [SerializeField] private Text waveTxt;
+    [SerializeField] private Text restTxt;
 
     [Header("시간")]
-    public float startTime = 10f;
+    [SerializeField] private float startTime = 10f;
     private float currentTime;
-    public float sec = 0f;
+    [SerializeField] private float sec = 0f;
 
     [Header("몬스터 수")]
     public int currentEnemyCount;
-    public int currentSpawnCount;
-    public int maxSpawnCount = 50;
-    public Text spawnCountTxt;
-    public Text countDownTxt;
+    [SerializeField] private int currentSpawnCount;
+    [SerializeField] private int maxSpawnCount = 50;
+    [SerializeField] private Text spawnCountTxt;
+    [SerializeField] private Text countDownTxt;
 
     void Awake()
     {

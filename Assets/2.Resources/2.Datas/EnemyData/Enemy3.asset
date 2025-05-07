@@ -15,3 +15,4 @@ MonoBehaviour:
   maxHp: 100
   currentHp: 0
   moveSpeed: 5
+  enemyGold: 1

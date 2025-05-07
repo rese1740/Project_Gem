@@ -200,11 +200,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b77d4af54e31274c98b49352b46a531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyData: {fileID: 11400000, guid: 5c3b829c887c2074dbf4a8d5e54a4a39, type: 2}
+  enemyData: {fileID: 11400000, guid: 5c3b829c887c2074dbf4a8d5e54a4a39, type: 2}
   maxHp: 100
   currentHp: 0
   moveSpeed: 2
+  isDead: 0
   hpTxt: {fileID: 2523196951006458109}
+  enemyGold: 0
 --- !u!1 &5324065845805892017
 GameObject:
   m_ObjectHideFlags: 0

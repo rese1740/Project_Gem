@@ -5,21 +5,24 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
     [Header("Enemy Stats")]
-    public EnemyData EnemyData;
+    public EnemyData enemyData;
     public float maxHp;
     public float currentHp;
     public float moveSpeed;
     private bool isDotActive = false;
     public bool isDead = false;
     public Text hpTxt;
+    public float enemyGold;
 
     private int currentWaypointIndex = 0;
 
     void Start()
     {
-        maxHp =EnemyData.maxHp;
-        currentHp =EnemyData.currentHp;
-        moveSpeed =EnemyData.moveSpeed;
+        enemyGold = enemyData.enemyGold;
+        maxHp = enemyData.maxHp;
+        currentHp = enemyData.currentHp;
+        moveSpeed = enemyData.moveSpeed;
+        enemyData.Init();
 
         currentHp = maxHp;
 
@@ -79,7 +82,7 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log(gameObject.name + "이(가) 사망했습니다.");
         GameManager.Instance.currentEnemyCount--;
-        GameManager.Instance.gold += GameManager.Instance.enemyGold;
+        GameManager.Instance.gold += enemyGold;
         Destroy(gameObject);
     }
 }

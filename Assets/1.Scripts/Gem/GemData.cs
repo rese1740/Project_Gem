@@ -3,13 +3,30 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Gem/GemData")]
 public class GemData : ScriptableObject
 {
-    public string itemID;           // 아이템 구분용 ID
-    public Sprite[] rankIcons;      // 아이템 아이콘
-    public float attackValue;       // 공격력
-    public float dotDamage;
-    public float attackSpeed;       // 공격 속도
-    public float attackRange;
+    public string itemID;
+    public Sprite[] rankIcons;
+    public int maxRank = 4;
     public int rank;
-    public int maxRank = 4; 
+
+    public GemStats[] statsPerRank; // 랭크별 능력치 배열
+
+    public GemStats GetStatsByRank(int rank)
+    {
+        // 배열은 0부터 시작하므로, rank 1이면 index 0
+        int index = Mathf.Clamp(rank - 1, 0, statsPerRank.Length - 1);
+        return statsPerRank[index];
+    }
 }
+
+[System.Serializable]
+public class GemStats
+{
+    public float attackValue;
+    public float attackSpeed;
+    public float dotDamage;
+    public float slowValue;
+    public float attackRange;
+    public float critValue;
+}
+
 

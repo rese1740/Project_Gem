@@ -9,6 +9,8 @@ public class Gem : MonoBehaviour
     public float attackSpeed;
     public float attackRange;
     public float dotDamage;
+    public float slowValue;
+    public float critValue;
 
     private float nextAttackTime = 0f;
     private Enemy currentTarget = null;  // 현재 타겟을 저장할 변수
@@ -19,15 +21,14 @@ public class Gem : MonoBehaviour
     {
         currentRank = itemData.rank;
         SetTargetToClosestEnemy();
+
         if (itemData != null)
         {
-            dotDamage = itemData.dotDamage;
-            attackDamage = itemData.attackValue;
-            attackSpeed = itemData.attackSpeed;
-            attackRange = itemData.attackRange;
-            UpdateIcon();
+            ApplyRankStats();  // 현재 랭크에 맞는 능력치 적용
+            UpdateIcon();      // 아이콘도 갱신
         }
     }
+
 
     void Update()
     {
@@ -45,28 +46,47 @@ public class Gem : MonoBehaviour
         }
     }
 
+    void ApplyRankStats()
+    {
+        GemStats stats = itemData.GetStatsByRank(currentRank);
+        attackDamage = stats.attackValue;
+        attackSpeed = stats.attackSpeed;
+        attackRange = stats.attackRange;
+        dotDamage = stats.dotDamage;
+        slowValue = stats.slowValue;
+        critValue = stats.critValue;
+    }
+
+    #region 공격
     void Attack()
     {
+        Debug.Log(1);
         if (currentTarget != null)
         {
-            // 타겟이 죽었거나 범위를 벗어난 경우, 새 타겟을 설정
+            
             if (currentTarget.isDead || Vector3.Distance(transform.position, currentTarget.transform.position) > attackRange)
             {
-                SetTargetToClosestEnemy();  // 새 타겟 설정
+                SetTargetToClosestEnemy();  
             }
 
-            // 타겟이 유효하면 공격
             if (currentTarget != null)
             {
-                currentTarget.TakeDamage(attackDamage);
+                float finalAttackDamage = attackDamage;
+                if (Random.value <= critValue)  
+                {
+                    finalAttackDamage *= 2f;  
+                }
+
+                currentTarget.TakeDamage(finalAttackDamage);  
                 StartCoroutine(DealDotDamage(currentTarget, dotDamage, 3, 1f));
             }
         }
         else
         {
-            Debug.Log("No target to attack!");  // 타겟이 없을 때 로그 출력
+            Debug.Log("No target to attack!");  
         }
     }
+
 
 
     public void SetTargetToClosestEnemy()
@@ -108,6 +128,7 @@ public class Gem : MonoBehaviour
             }
         }
     }
+    #endregion
 
     #region 합체
     void UpdateIcon()
@@ -123,10 +144,19 @@ public class Gem : MonoBehaviour
         if (currentRank < itemData.maxRank)
         {
             currentRank++;
-            attackDamage = itemData.attackValue;
-            attackSpeed = itemData.attackSpeed;
+
+            // 현재 랭크의 능력치 가져오기
+            GemStats stats = itemData.GetStatsByRank(currentRank);
+
+            attackDamage = stats.attackValue;
+            attackSpeed = stats.attackSpeed;
+            attackRange = stats.attackRange;
+            dotDamage = stats.dotDamage;
+            slowValue = stats.slowValue;
+
             UpdateIcon();
         }
     }
+
     #endregion
 }

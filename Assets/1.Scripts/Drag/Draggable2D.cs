@@ -41,7 +41,6 @@ public class Draggable2D : MonoBehaviour
     {
         if (!isDragging)
         {
-            // 클릭만 했으면 아무것도 하지 않음
             return;
         }
 

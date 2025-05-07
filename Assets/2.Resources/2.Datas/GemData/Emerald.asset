@@ -12,14 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85603f218c5087443a3140eb75448197, type: 3}
   m_Name: Emerald
   m_EditorClassIdentifier: 
-  itemID: BlueGem
+  itemID: Emerald
   rankIcons:
   - {fileID: 21300000, guid: 77d5df1666ec9af4eac2e164b4b087da, type: 3}
   - {fileID: 21300000, guid: aedb725fc2a139d4ba1384d06a0badd6, type: 3}
   - {fileID: 21300000, guid: b076943de82e70c47aa52cce1843c42c, type: 3}
   - {fileID: 21300000, guid: 0e00e22c2302c4c429576e0e04ff4834, type: 3}
-  attackValue: 10
-  dotDamage: 2
-  attackSpeed: 2
-  rank: 1
   maxRank: 4
+  rank: 1
+  statsPerRank:
+  - attackValue: 0
+    dotDamage: 0
+    slowValue: 0
+    attackSpeed: 0
+    attackRange: 0
+  - attackValue: 0
+    dotDamage: 0
+    slowValue: 0
+    attackSpeed: 0
+    attackRange: 0
+  - attackValue: 0
+    dotDamage: 0
+    slowValue: 0
+    attackSpeed: 0
+    attackRange: 0
+  - attackValue: 0
+    dotDamage: 0
+    slowValue: 0
+    attackSpeed: 0
+    attackRange: 0
