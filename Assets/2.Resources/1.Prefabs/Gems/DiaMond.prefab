@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4001770362523849209}
   - component: {fileID: 1172599071684665086}
   m_Layer: 0
-  m_Name: Ruby
+  m_Name: DiaMond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751cb602540b166469762de4ef45b6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 8ad00d5c4170ad7448a6df9506fa9055, type: 2}
+  itemData: {fileID: 11400000, guid: 040be0a720f4daa41962e78f683a7d3b, type: 2}
   spriteRenderer: {fileID: 4614072709732977757}
   attackDamage: 0
   attackSpeed: 0

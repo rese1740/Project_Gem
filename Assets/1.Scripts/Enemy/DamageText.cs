@@ -9,15 +9,36 @@ public class DamageText : MonoBehaviour
     public float alphaSpeed = 1f;
     public float destroyTime = 1f;
     public float damage;
-    TextMeshProUGUI tmp;
+    TextMeshPro tmp;
     Color alpha;
+    public string itemID;
 
     private void Start()
     {
-        tmp = GetComponent<TextMeshProUGUI>();
-        alpha = tmp.color;
+        tmp = GetComponent<TextMeshPro>();
         tmp.text = damage.ToString();
+
+        switch (itemID)
+        {
+            case "Emerald":
+                tmp.color = Color.green;
+                break;
+            case "Ruby":
+                tmp.color = Color.red;
+                break;
+            case "Sapphire":
+                tmp.color = Color.blue;
+                break;
+            case "Diamond":
+                tmp.color = Color.cyan;
+                break;
+            default:
+                tmp.color = Color.white;
+                break;
+        }
+
         Destroy(gameObject,destroyTime);
+        alpha = tmp.color;
     }
 
     private void Update()

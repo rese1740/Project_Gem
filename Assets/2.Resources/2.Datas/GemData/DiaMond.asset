@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85603f218c5087443a3140eb75448197, type: 3}
   m_Name: DiaMond
   m_EditorClassIdentifier: 
-  itemID: Sapphire
+  itemID: Diamond
   rankIcons:
   - {fileID: 21300000, guid: a78829c9f8116cf42b5f0fb1b09be313, type: 3}
   - {fileID: 21300000, guid: e39febd05ac08a54e89646a92cbbdc7e, type: 3}
@@ -21,27 +21,27 @@ MonoBehaviour:
   maxRank: 4
   rank: 1
   statsPerRank:
-  - attackValue: 0
+  - attackValue: 35
+    attackSpeed: 2
     dotDamage: 0
     slowValue: 0
-    attackSpeed: 0
-    attackRange: 0
-    criValue: 0.5
-  - attackValue: 0
+    attackRange: 50
+    critValue: 0.5
+  - attackValue: 42
+    attackSpeed: 2
     dotDamage: 0
     slowValue: 0
-    attackSpeed: 0
-    attackRange: 0
-    criValue: 0.5
-  - attackValue: 0
+    attackRange: 50
+    critValue: 0.5
+  - attackValue: 49
+    attackSpeed: 2
     dotDamage: 0
     slowValue: 0
-    attackSpeed: 0
-    attackRange: 0
-    criValue: 0.5
-  - attackValue: 0
+    attackRange: 50
+    critValue: 0.5
+  - attackValue: 56
+    attackSpeed: 2
     dotDamage: 0
     slowValue: 0
-    attackSpeed: 0
-    attackRange: 0
-    criValue: 0.5
+    attackRange: 50
+    critValue: 0.5

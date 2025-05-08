@@ -48,12 +48,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 751cb602540b166469762de4ef45b6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemData: {fileID: 11400000, guid: 50b9c82eb47da5c45927fad7d07b31b8, type: 2}
+  itemData: {fileID: 11400000, guid: 540f0ff20a4736c4093bdabeb7964ae5, type: 2}
   spriteRenderer: {fileID: 4614072709732977757}
   attackDamage: 0
   attackSpeed: 0
   attackRange: 0
   dotDamage: 0
+  slowValue: 0
+  critValue: 0
   currentRank: 0
 --- !u!212 &4614072709732977757
 SpriteRenderer:

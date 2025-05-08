@@ -287,7 +287,7 @@ MonoBehaviour:
   enemyGold: 0
   isDead: 0
   hpTxt: {fileID: 3322736395654433025}
-  hudDamageText: {fileID: 1267942537015649304, guid: cfc939276f99c4d4e9feea19a1ab88d9, type: 3}
+  hudDamageText: {fileID: 8652066202876847024, guid: cfc939276f99c4d4e9feea19a1ab88d9, type: 3}
   hudPos: {fileID: 5194066000891147844}
 --- !u!1 &9118503417686073764
 GameObject:

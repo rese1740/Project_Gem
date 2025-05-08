@@ -68,22 +68,28 @@ public class Enemy : MonoBehaviour
     }
 
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, string attackerItemID)
     {
-        if(isDead) return;
+        if (isDead) return;
 
         currentHp -= damage;
 
+        if (damage <= 0) return;
+
+        // 데미지 텍스트 생성
         GameObject hudText = Instantiate(hudDamageText);
         hudText.transform.position = hudPos.position;
-        hudText.GetComponent<DamageText>().damage = damage;
 
-        if (currentHp <= 0f)
+        DamageText dt = hudText.GetComponent<DamageText>();
+        dt.damage = damage;
+        dt.itemID = attackerItemID; 
+
+        if(currentHp < 0)
         {
-            isDead = true;
             Die();
         }
     }
+
     public void ApplySlow(float slowPercent, float duration)
     {
         if (isDead) return;
@@ -94,11 +100,11 @@ public class Enemy : MonoBehaviour
     IEnumerator SlowCoroutine(float slowPercent, float duration)
     {
         float originalSpeed = moveSpeed;
-        moveSpeed *= 1f - (slowPercent / 100f);  
+        moveSpeed *= 1f - (slowPercent / 100f);
 
         yield return new WaitForSeconds(duration);
 
-        moveSpeed = originalSpeed;  
+        moveSpeed = originalSpeed;
     }
 
 

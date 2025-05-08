@@ -52,9 +52,17 @@ public class Gem : MonoBehaviour
         attackDamage = stats.attackValue;
         attackSpeed = stats.attackSpeed;
         attackRange = stats.attackRange;
-        dotDamage = stats.dotDamage;
         slowValue = stats.slowValue;
         critValue = stats.critValue;
+
+        if (itemData.itemID == "Emerald")
+        {
+            dotDamage = attackDamage * 0.3f;
+        }
+        else
+        {
+            dotDamage = 0f;
+        }
     }
 
     #region АјАн
@@ -62,32 +70,24 @@ public class Gem : MonoBehaviour
     {
         if (currentTarget != null)
         {
-            
-            if (currentTarget.isDead || Vector3.Distance(transform.position, currentTarget.transform.position) > attackRange)
+            float finalAttackDamage = attackDamage;
+
+            if (Random.value <= critValue)
             {
-                SetTargetToClosestEnemy();  
+                finalAttackDamage *= 2f;
             }
+            currentTarget.TakeDamage(finalAttackDamage, itemData.itemID);
 
-            if (currentTarget != null)
+            StartCoroutine(DealDotDamage(currentTarget, dotDamage, 3, 1f));
+
+            if (slowValue > 0)
             {
-                float finalAttackDamage = attackDamage;
-                if (Random.value <= critValue)  
-                {
-                    finalAttackDamage *= 2f;  
-                }
-
-                currentTarget.TakeDamage(finalAttackDamage);  
-                StartCoroutine(DealDotDamage(currentTarget, dotDamage, 3, 1f));
-
-                if (slowValue > 0)
-                {
-                    currentTarget.ApplySlow(slowValue, 2f); 
-                }
+                currentTarget.ApplySlow(slowValue, 2f);
             }
         }
         else
         {
-            Debug.Log("No target to attack!");  
+            Debug.Log("No target to attack!");
         }
     }
 
@@ -128,7 +128,7 @@ public class Gem : MonoBehaviour
             yield return new WaitForSeconds(interval);
             if (enemy != null)
             {
-                enemy.TakeDamage(damagePerTick);
+                enemy.TakeDamage(damagePerTick, itemData.itemID);
             }
         }
     }

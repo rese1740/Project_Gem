@@ -35,38 +35,45 @@ public class Draggable2D : MonoBehaviour
             isDragging = true;
             transform.position = new Vector3(mousePos.x, mousePos.y, transform.position.z) + offset;
         }
+
+        Collider2D hit = Physics2D.OverlapPoint(transform.position, LayerMask.GetMask("DropZone", "Trash"));
     }
 
     void OnMouseUp()
     {
-        if (!isDragging)
-        {
-            return;
-        }
+        if (!isDragging) return;
 
-        // 드래그 후 놓았을 때 처리
-        Collider2D hit = Physics2D.OverlapPoint(transform.position, LayerMask.GetMask("DropZone"));
+        Collider2D hit = Physics2D.OverlapPoint(transform.position, LayerMask.GetMask("DropZone", "Trash"));
 
         if (hit != null)
         {
-            Gem slotGem = hit.GetComponentInChildren<Gem>();
+            string layerName = LayerMask.LayerToName(hit.gameObject.layer);
 
-            if (slotGem == null)
+            if (layerName == "Trash")
             {
-                transform.position = hit.transform.position;
-                transform.SetParent(hit.transform);
+                Debug.Log("쓰레기통에 버림");
+                Destroy(gameObject);
             }
-            else
+            else if (layerName == "DropZone")
             {
-                if (myGem != null && slotGem != null && myGem.itemData.itemID == slotGem.itemData.itemID && myGem.currentRank == slotGem.currentRank)
+                Gem slotGem = hit.GetComponentInChildren<Gem>();
+
+                if (slotGem == null)
+                {
+                    transform.position = hit.transform.position;
+                    transform.SetParent(hit.transform);
+                }
+                else if (myGem != null &&
+                         myGem.itemData.itemID == slotGem.itemData.itemID &&
+                         myGem.currentRank == slotGem.currentRank)
                 {
                     slotGem.LevelUp();
-                    Debug.Log("아이템 랭크가 상승했습니다!");
+                    Debug.Log("합성 성공!");
                     Destroy(gameObject);
                 }
                 else
                 {
-                    Debug.Log("병합 실패: 아이템 ID 또는 랭크가 다릅니다.");
+                    Debug.Log("합성 실패");
                     transform.position = originalPosition;
                 }
             }
@@ -76,4 +83,5 @@ public class Draggable2D : MonoBehaviour
             transform.position = originalPosition;
         }
     }
+
 }
