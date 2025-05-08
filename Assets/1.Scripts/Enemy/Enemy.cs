@@ -110,9 +110,14 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        if (!isDead)
+        {
         Debug.Log(gameObject.name + "이(가) 사망했습니다.");
         GameManager.Instance.currentEnemyCount--;
         GameManager.Instance.gold += enemyGold;
         Destroy(gameObject);
+            isDead = true;
+        }
+       
     }
 }
