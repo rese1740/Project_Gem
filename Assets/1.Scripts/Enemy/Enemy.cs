@@ -9,10 +9,14 @@ public class Enemy : MonoBehaviour
     public float maxHp;
     public float currentHp;
     public float moveSpeed;
+    public float enemyGold;
     private bool isDotActive = false;
     public bool isDead = false;
+
+    [Header("Enemy UI")]
     public Text hpTxt;
-    public float enemyGold;
+    public GameObject hudDamageText;
+    public Transform hudPos;
 
     private int currentWaypointIndex = 0;
 
@@ -69,7 +73,10 @@ public class Enemy : MonoBehaviour
         if(isDead) return;
 
         currentHp -= damage;
-       
+
+        GameObject hudText = Instantiate(hudDamageText);
+        hudText.transform.position = hudPos.position;
+        hudText.GetComponent<DamageText>().damage = damage;
 
         if (currentHp <= 0f)
         {
@@ -77,6 +84,23 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
+    public void ApplySlow(float slowPercent, float duration)
+    {
+        if (isDead) return;
+
+        StartCoroutine(SlowCoroutine(slowPercent, duration));
+    }
+
+    IEnumerator SlowCoroutine(float slowPercent, float duration)
+    {
+        float originalSpeed = moveSpeed;
+        moveSpeed *= 1f - (slowPercent / 100f);  
+
+        yield return new WaitForSeconds(duration);
+
+        moveSpeed = originalSpeed;  
+    }
+
 
     void Die()
     {

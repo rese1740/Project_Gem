@@ -60,7 +60,6 @@ public class Gem : MonoBehaviour
     #region АјАн
     void Attack()
     {
-        Debug.Log(1);
         if (currentTarget != null)
         {
             
@@ -79,6 +78,11 @@ public class Gem : MonoBehaviour
 
                 currentTarget.TakeDamage(finalAttackDamage);  
                 StartCoroutine(DealDotDamage(currentTarget, dotDamage, 3, 1f));
+
+                if (slowValue > 0)
+                {
+                    currentTarget.ApplySlow(slowValue, 2f); 
+                }
             }
         }
         else
