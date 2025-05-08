@@ -1,10 +1,12 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
 public class Gem : MonoBehaviour
 {
     public GemData itemData;
-    public SpriteRenderer spriteRenderer;
+    SpriteRenderer spriteRenderer;
+    [Header("Get Stat")]
     public float attackDamage;
     public float attackSpeed;
     public float attackRange;
@@ -13,19 +15,30 @@ public class Gem : MonoBehaviour
     public float critValue;
 
     private float nextAttackTime = 0f;
-    private Enemy currentTarget = null;  // 현재 타겟을 저장할 변수
+    private Enemy currentTarget = null;  
 
     public int currentRank;
 
+    public float scaleFactor = 5f;  
+    public float duration = 0.5f;  
+
     void Start()
     {
+        transform.localScale = Vector3.one * 0.2f;
+
+        transform.DOScale(Vector3.one * scaleFactor, duration).OnKill(() =>
+        {
+            transform.DOScale(Vector3.one * 0.2f, duration);
+        });
+
         currentRank = itemData.rank;
         SetTargetToClosestEnemy();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         if (itemData != null)
         {
-            ApplyRankStats();  // 현재 랭크에 맞는 능력치 적용
-            UpdateIcon();      // 아이콘도 갱신
+            ApplyRankStats(); 
+            UpdateIcon();      
         }
     }
 
@@ -82,7 +95,7 @@ public class Gem : MonoBehaviour
 
             if (slowValue > 0)
             {
-                currentTarget.ApplySlow(slowValue, 2f);
+                currentTarget.ApplySlow(slowValue, 10f);
             }
         }
         else
@@ -145,6 +158,14 @@ public class Gem : MonoBehaviour
 
     public void LevelUp()
     {
+
+        transform.localScale = Vector3.one * 0.2f;
+
+        transform.DOScale(Vector3.one * scaleFactor, duration).OnKill(() =>
+        {
+            transform.DOScale(Vector3.one * 0.2f, duration);
+        });
+
         if (currentRank < itemData.maxRank)
         {
             currentRank++;

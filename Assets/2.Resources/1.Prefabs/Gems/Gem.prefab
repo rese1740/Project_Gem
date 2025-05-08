@@ -49,11 +49,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 50b9c82eb47da5c45927fad7d07b31b8, type: 2}
-  spriteRenderer: {fileID: 4614072709732977757}
   attackDamage: 0
   attackSpeed: 0
+  attackRange: 0
   dotDamage: 0
+  slowValue: 0
+  critValue: 0
   currentRank: 0
+  scaleFactor: 0.3
+  duration: 0.3
 --- !u!212 &4614072709732977757
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -118,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ae140e242b458498124c17a59afe29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dragThreshold: 0.1
 --- !u!61 &4001770362523849209
 BoxCollider2D:
   m_ObjectHideFlags: 0

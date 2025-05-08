@@ -49,7 +49,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 540f0ff20a4736c4093bdabeb7964ae5, type: 2}
-  spriteRenderer: {fileID: 4614072709732977757}
   attackDamage: 0
   attackSpeed: 0
   attackRange: 0
@@ -57,6 +56,8 @@ MonoBehaviour:
   slowValue: 0
   critValue: 0
   currentRank: 0
+  scaleFactor: 0.3
+  duration: 0.3
 --- !u!212 &4614072709732977757
 SpriteRenderer:
   m_ObjectHideFlags: 0

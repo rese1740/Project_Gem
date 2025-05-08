@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,6 +13,7 @@ public class DamageText : MonoBehaviour
     TextMeshPro tmp;
     Color alpha;
     public string itemID;
+    public float targetScale = 2f;  // 원하는 크기
 
     private void Start()
     {
@@ -36,15 +38,18 @@ public class DamageText : MonoBehaviour
                 tmp.color = Color.white;
                 break;
         }
-
-        Destroy(gameObject,destroyTime);
         alpha = tmp.color;
+
+        transform.localScale = Vector3.one * 0.1f;  
+        transform.DOScale(Vector3.one * targetScale, 0.3f).SetEase(Ease.OutBack);  // 원하는 크기(targetScale)로 커짐
+        transform.DOMoveY(transform.position.y + 1f * moveSpeed, 1f)
+         .OnComplete(() => Destroy(gameObject));
+
+        // 알파 값을 점차적으로 변경 (투명하게)
+        tmp.DOFade(0, destroyTime).SetEase(Ease.Linear);
+
+       
     }
 
-    private void Update()
-    {
-        transform.Translate(new Vector3(0, moveSpeed * Time.deltaTime, 0));
-        alpha.a = Mathf.Lerp(alpha.a, 0, Time.deltaTime * alphaSpeed);
-        tmp.color = alpha;
-    }
+   
 }
