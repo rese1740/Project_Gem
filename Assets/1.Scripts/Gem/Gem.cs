@@ -1,5 +1,5 @@
-using DG.Tweening;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public class Gem : MonoBehaviour
@@ -15,21 +15,16 @@ public class Gem : MonoBehaviour
     public float critValue;
 
     private float nextAttackTime = 0f;
-    private Enemy currentTarget = null;  
+    private Enemy currentTarget = null;
 
     public int currentRank;
 
-    public float scaleFactor = 5f;  
-    public float duration = 0.5f;  
+    public float scaleFactor = 5f;
+    public float duration = 0.5f;
 
     void Start()
     {
-        transform.localScale = Vector3.one * 0.2f;
-
-        transform.DOScale(Vector3.one * scaleFactor, duration).OnKill(() =>
-        {
-            transform.DOScale(Vector3.one * 0.2f, duration);
-        });
+        PlayDoTween();
 
         currentRank = itemData.rank;
         SetTargetToClosestEnemy();
@@ -37,46 +32,26 @@ public class Gem : MonoBehaviour
 
         if (itemData != null)
         {
-            ApplyRankStats(); 
-            UpdateIcon();      
+            ApplyRankStats();
+            UpdateIcon();
         }
     }
 
 
     void Update()
     {
-        // 공격이 가능한 시간이고, 타겟이 있을 때만 공격
         if (Time.time >= nextAttackTime && currentTarget != null)
         {
-            // 공격 수행
             Attack();
             nextAttackTime = Time.time + attackSpeed;
         }
         else if (currentTarget == null)
         {
-            // 타겟이 없으면 새 타겟을 설정
             SetTargetToClosestEnemy();
         }
     }
 
-    void ApplyRankStats()
-    {
-        GemStats stats = itemData.GetStatsByRank(currentRank);
-        attackDamage = stats.attackValue;
-        attackSpeed = stats.attackSpeed;
-        attackRange = stats.attackRange;
-        slowValue = stats.slowValue;
-        critValue = stats.critValue;
-
-        if (itemData.itemID == "Emerald")
-        {
-            dotDamage = attackDamage * 0.3f;
-        }
-        else
-        {
-            dotDamage = 0f;
-        }
-    }
+    
 
     #region 공격
     void Attack()
@@ -97,10 +72,6 @@ public class Gem : MonoBehaviour
             {
                 currentTarget.ApplySlow(slowValue, 10f);
             }
-        }
-        else
-        {
-            Debug.Log("No target to attack!");
         }
     }
 
@@ -152,34 +123,49 @@ public class Gem : MonoBehaviour
     {
         if (itemData != null && spriteRenderer != null && currentRank >= 1 && currentRank <= itemData.rankIcons.Length)
         {
-            spriteRenderer.sprite = itemData.rankIcons[currentRank - 1];  // 랭크에 맞는 아이콘 설정
+            spriteRenderer.sprite = itemData.rankIcons[currentRank - 1];
         }
     }
 
-    public void LevelUp()
+    void PlayDoTween()
     {
-
         transform.localScale = Vector3.one * 0.2f;
 
         transform.DOScale(Vector3.one * scaleFactor, duration).OnKill(() =>
         {
             transform.DOScale(Vector3.one * 0.2f, duration);
         });
+    }
+
+    public void LevelUp()
+    {
+        PlayDoTween();
 
         if (currentRank < itemData.maxRank)
         {
             currentRank++;
 
-            // 현재 랭크의 능력치 가져오기
-            GemStats stats = itemData.GetStatsByRank(currentRank);
-
-            attackDamage = stats.attackValue;
-            attackSpeed = stats.attackSpeed;
-            attackRange = stats.attackRange;
-            dotDamage = stats.dotDamage;
-            slowValue = stats.slowValue;
+            ApplyRankStats();
 
             UpdateIcon();
+        }
+    }
+    void ApplyRankStats()
+    {
+        GemStats stats = itemData.GetStatsByRank(currentRank);
+        attackDamage = stats.attackValue;
+        attackSpeed = stats.attackSpeed;
+        attackRange = stats.attackRange;
+        slowValue = stats.slowValue;
+        critValue = stats.critValue;
+
+        if (itemData.itemID == "Emerald")
+        {
+            dotDamage = attackDamage * 0.3f;
+        }
+        else
+        {
+            dotDamage = 0f;
         }
     }
 

@@ -8,11 +8,10 @@ public class GemData : ScriptableObject
     public int maxRank = 4;
     public int rank;
 
-    public GemStats[] statsPerRank; // 랭크별 능력치 배열
+    public GemStats[] statsPerRank; 
 
     public GemStats GetStatsByRank(int rank)
     {
-        // 배열은 0부터 시작하므로, rank 1이면 index 0
         int index = Mathf.Clamp(rank - 1, 0, statsPerRank.Length - 1);
         return statsPerRank[index];
     }

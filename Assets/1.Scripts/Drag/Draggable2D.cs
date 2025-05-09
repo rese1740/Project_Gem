@@ -40,8 +40,6 @@ public class Draggable2D : MonoBehaviour
             isDragging = true;
             transform.position = new Vector3(mousePos.x, mousePos.y, transform.position.z) + offset;
         }
-
-       
     }
 
     void OnMouseUp()
