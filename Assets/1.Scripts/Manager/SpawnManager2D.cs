@@ -42,7 +42,7 @@ public class SpawnManager2D : MonoBehaviour
         GameObject randomCardPrefab = cardPrefabList[Random.Range(0, cardPrefabList.Length)];
         Transform randomPoint = emptyPoints[Random.Range(0, emptyPoints.Count)];
 
-        // 카드 인스턴스 생성 (2D 월드 공간에)
+        
         GameObject cardInstance = Instantiate(randomCardPrefab, randomPoint.position, Quaternion.identity);
         cardInstance.transform.SetParent(randomPoint);  // 부모 설정으로 슬롯 정보 유지
 

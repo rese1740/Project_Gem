@@ -82,9 +82,9 @@ public class Enemy : MonoBehaviour
 
         DamageText dt = hudText.GetComponent<DamageText>();
         dt.damage = damage;
-        dt.itemID = attackerItemID; 
+        dt.itemID = attackerItemID;
 
-        if(currentHp < 0)
+        if (currentHp < 0)
         {
             Die();
         }
@@ -100,6 +100,7 @@ public class Enemy : MonoBehaviour
     IEnumerator SlowCoroutine(float slowPercent, float duration)
     {
         float originalSpeed = moveSpeed;
+
         moveSpeed *= 1f - (slowPercent / 100f);
 
         yield return new WaitForSeconds(duration);
@@ -112,12 +113,11 @@ public class Enemy : MonoBehaviour
     {
         if (!isDead)
         {
-        Debug.Log(gameObject.name + "이(가) 사망했습니다.");
-        GameManager.Instance.currentEnemyCount--;
-        GameManager.Instance.gold += enemyGold;
-        Destroy(gameObject);
+            GameManager.Instance.currentEnemyCount--;
+            GameManager.Instance.gold += enemyGold;
+            Destroy(gameObject);
             isDead = true;
         }
-       
+
     }
 }

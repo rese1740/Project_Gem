@@ -25,7 +25,7 @@ public class Draggable2D : MonoBehaviour
         offset = transform.position - new Vector3(mouseDownPos.x, mouseDownPos.y, transform.position.z);
         originalPosition = transform.position;
 
-        // 원래 부모를 저장해놓고, 부모에서 떼어냄
+     
         originalParent = transform.parent;
         transform.SetParent(null);
     }
@@ -51,7 +51,6 @@ public class Draggable2D : MonoBehaviour
             return;
         }
 
-        // 드래그 후 놓았을 때 처리
         Collider2D hit = Physics2D.OverlapPoint(transform.position, LayerMask.GetMask("DropZone", "Trash"));
 
         if (hit != null)
@@ -73,16 +72,13 @@ public class Draggable2D : MonoBehaviour
                 }
                 else if (myGem != null &&
                          myGem.itemData.itemID == slotGem.itemData.itemID &&
-                         myGem.currentRank == slotGem.currentRank)
+                         myGem.currentRank == slotGem.currentRank && myGem.itemData.rank <= myGem.itemData.maxRank)
                 {
                     slotGem.LevelUp();
-                    Debug.Log("합성 성공!");
                     Destroy(gameObject);
                 }
                 else
                 {
-                    Debug.Log("합성 실패");
-                    // 원래 위치로 되돌리기
                     transform.position = originalPosition;
                     transform.SetParent(originalParent);  
                 }
