@@ -4,19 +4,35 @@ using UnityEngine;
 
 public class SpawnManager2D : MonoBehaviour
 {
-    public List<Transform> spawnPoints;             // 2D 상에 카드가 배치될 위치들
-    public GameObject[] cardPrefabList;             // 스프라이트 기반 2D 카드 프리팹들
-    public float cost;
-    [SerializeField] private TextMeshProUGUI requiredGold;
+    public List<Transform> spawnPoints;           
+    public GameObject[] cardPrefabList;           
+    public float gemCost, emeraldCost, rubyCost, diamondCost,sapphireCost;
+    [SerializeField] private TextMeshProUGUI[] requiredGold;
+    [SerializeField] private float upgradeGold = 5f;
 
 
     private void Update()
     {
-        requiredGold.text = cost.ToString();
+        requiredGold[0].text = gemCost.ToString();
+        requiredGold[1].text = rubyCost.ToString();
+        requiredGold[2].text = emeraldCost.ToString();
+        requiredGold[3].text = diamondCost.ToString();
+        requiredGold[4].text = sapphireCost.ToString();
+
+        if(gemCost >= 50)
+            gemCost = 50;
+        else if(rubyCost >= 50)
+            rubyCost = 50;
+        else if(diamondCost >= 50)  
+            diamondCost = 50;
+        else if (sapphireCost >= 50)
+            sapphireCost = 50;
+        else if(emeraldCost >= 50)
+            emeraldCost = 50;
     }
-    public void SpawnRandomCardAtEmptyPoint()
+    public void SpawnGem()
     {
-        if (GameManager.Instance.gold < cost)
+        if (GameManager.Instance.gold < gemCost)
         {
             Debug.Log("골드가 부족합니다!");
             return;
@@ -38,15 +54,149 @@ public class SpawnManager2D : MonoBehaviour
             return;
         }
 
-        // 랜덤 카드 프리팹과 위치 선택
-        GameObject randomCardPrefab = cardPrefabList[Random.Range(0, cardPrefabList.Length)];
         Transform randomPoint = emptyPoints[Random.Range(0, emptyPoints.Count)];
 
         
-        GameObject cardInstance = Instantiate(randomCardPrefab, randomPoint.position, Quaternion.identity);
-        cardInstance.transform.SetParent(randomPoint);  // 부모 설정으로 슬롯 정보 유지
+        GameObject cardInstance = Instantiate(cardPrefabList[0], randomPoint.position, Quaternion.identity);
+        cardInstance.transform.SetParent(randomPoint);  
 
-        GameManager.Instance.gold -= cost;
-        cost += 2;
+        GameManager.Instance.gold -= gemCost;
+        gemCost += upgradeGold;
+    }
+
+    public void SpawnRuby()
+    {
+        if (GameManager.Instance.gold < rubyCost)
+        {
+            Debug.Log("골드가 부족합니다!");
+            return;
+        }
+
+        List<Transform> emptyPoints = new List<Transform>();
+
+        foreach (var point in spawnPoints)
+        {
+            if (point.childCount == 0)
+            {
+                emptyPoints.Add(point);
+            }
+        }
+
+        if (emptyPoints.Count == 0)
+        {
+            Debug.Log("빈 위치가 없습니다.");
+            return;
+        }
+
+        Transform randomPoint = emptyPoints[Random.Range(0, emptyPoints.Count)];
+
+
+        GameObject cardInstance = Instantiate(cardPrefabList[1], randomPoint.position, Quaternion.identity);
+        cardInstance.transform.SetParent(randomPoint);
+
+        GameManager.Instance.gold -= rubyCost;
+        rubyCost += upgradeGold;
+    }
+
+    public void SpawnEmerald()
+    {
+        if (GameManager.Instance.gold < emeraldCost)
+        {
+            Debug.Log("골드가 부족합니다!");
+            return;
+        }
+
+        List<Transform> emptyPoints = new List<Transform>();
+
+        foreach (var point in spawnPoints)
+        {
+            if (point.childCount == 0)
+            {
+                emptyPoints.Add(point);
+            }
+        }
+
+        if (emptyPoints.Count == 0)
+        {
+            Debug.Log("빈 위치가 없습니다.");
+            return;
+        }
+
+        Transform randomPoint = emptyPoints[Random.Range(0, emptyPoints.Count)];
+
+
+        GameObject cardInstance = Instantiate(cardPrefabList[2], randomPoint.position, Quaternion.identity);
+        cardInstance.transform.SetParent(randomPoint);
+
+        GameManager.Instance.gold -= emeraldCost;
+        emeraldCost += upgradeGold;
+    }
+
+    public void SpawnDiaMond()
+    {
+        if (GameManager.Instance.gold < diamondCost)
+        {
+            Debug.Log("골드가 부족합니다!");
+            return;
+        }
+
+        List<Transform> emptyPoints = new List<Transform>();
+
+        foreach (var point in spawnPoints)
+        {
+            if (point.childCount == 0)
+            {
+                emptyPoints.Add(point);
+            }
+        }
+
+        if (emptyPoints.Count == 0)
+        {
+            Debug.Log("빈 위치가 없습니다.");
+            return;
+        }
+
+        Transform randomPoint = emptyPoints[Random.Range(0, emptyPoints.Count)];
+
+
+        GameObject cardInstance = Instantiate(cardPrefabList[3], randomPoint.position, Quaternion.identity);
+        cardInstance.transform.SetParent(randomPoint);
+
+        GameManager.Instance.gold -= diamondCost;
+        diamondCost += upgradeGold;
+    }
+
+    public void SpawnSapphire()
+    {
+        if (GameManager.Instance.gold < sapphireCost)
+        {
+            Debug.Log("골드가 부족합니다!");
+            return;
+        }
+
+        List<Transform> emptyPoints = new List<Transform>();
+
+        foreach (var point in spawnPoints)
+        {
+            if (point.childCount == 0)
+            {
+                emptyPoints.Add(point);
+            }
+        }
+
+        if (emptyPoints.Count == 0)
+        {
+            Debug.Log("빈 위치가 없습니다.");
+            return;
+        }
+
+        Transform randomPoint = emptyPoints[Random.Range(0, emptyPoints.Count)];
+
+
+        GameObject cardInstance = Instantiate(cardPrefabList[4], randomPoint.position, Quaternion.identity);
+        cardInstance.transform.SetParent(randomPoint);
+
+        GameManager.Instance.gold -= sapphireCost;
+        sapphireCost += upgradeGold;
     }
 }

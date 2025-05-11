@@ -20,7 +20,10 @@ public class GameManager : MonoBehaviour
 
     [Header("재화")]
     public float gold;
-    [SerializeField] private Text goldText;
+    public float maxGold;
+    public float goldUpGradeRequired;
+    [SerializeField] private TextMeshProUGUI goldUpgradeTxt;
+    [SerializeField] private Text goldTxt;
 
 
     [Header("Wave")]
@@ -41,6 +44,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text spawnCountTxt;
     [SerializeField] private Text countDownTxt;
 
+    [Header("Enemy Scaling")]
+    [SerializeField] private float hpIncreasePerWave = 30f;
+    public float currentHpBonus = 0f;
+
     void Awake()
     {
         Instance = this;
@@ -55,7 +62,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         spawnCountTxt.text = $"{currentEnemyCount}/{maxSpawnCount}";
-        goldText.text = gold.ToString();
+        goldUpgradeTxt.text = $"{maxGold}";
+
+        if(gold >= maxGold)
+            gold = maxGold;
+
+        goldTxt.text = gold.ToString();
 
         if (currentEnemyCount >= maxSpawnCount)
         {
@@ -85,14 +97,15 @@ public class GameManager : MonoBehaviour
         
     }
 
- 
+
 
     #region Wave 진행
     void StartWave()
     {
-        
         if (currentWaveIndex < waves.Length)
         {
+            currentHpBonus = currentWaveIndex * hpIncreasePerWave;
+
             currentWave = waves[currentWaveIndex];
             displayWaveIndex++;
             StartCoroutine(SpawnEnemies());
@@ -102,6 +115,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("모든 웨이브 클리어!");
         }
     }
+
 
     IEnumerator SpawnEnemies()
     {
@@ -162,5 +176,15 @@ public class GameManager : MonoBehaviour
     void UpdateTimerUI()
     {
         countDownTxt.text = Mathf.Ceil(currentTime).ToString();
+    }
+
+    public void GoldUpGradeBtn()
+    {
+        if(gold >= goldUpGradeRequired)
+        {
+            maxGold += 25;
+            gold += 25;
+        }
+        
     }
 }

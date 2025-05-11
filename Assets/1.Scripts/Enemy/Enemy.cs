@@ -23,12 +23,14 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         enemyGold = enemyData.enemyGold;
-        maxHp = enemyData.maxHp;
-        currentHp = enemyData.currentHp;
+
+        float bonusHp = GameManager.Instance.currentHpBonus;
+
+        maxHp = enemyData.maxHp + bonusHp;
+        currentHp = maxHp;
+
         moveSpeed = enemyData.moveSpeed;
         enemyData.Init();
-
-        currentHp = maxHp;
 
         if (Waypoint.Points == null || Waypoint.Points.Length == 0)
         {
@@ -36,6 +38,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
 
     void Update()
     {

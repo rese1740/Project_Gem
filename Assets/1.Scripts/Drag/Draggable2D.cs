@@ -59,6 +59,26 @@ public class Draggable2D : MonoBehaviour
             if (layerName == "Trash")
             {
                 Debug.Log("쓰레기통에 버림");
+                switch (myGem.currentRank) 
+                {
+                    case 1:
+                        GameManager.Instance.gold += GameManager.Instance.maxGold * 0.05f;
+                        break;
+                    case 2:
+                        GameManager.Instance.gold += GameManager.Instance.maxGold * 0.15f;
+                        break;
+                    case 3:
+                        GameManager.Instance.gold += GameManager.Instance.maxGold * 0.3f;
+                        break;
+                    case 4:
+                        GameManager.Instance.gold += GameManager.Instance.maxGold * 0.5f;
+                        break;
+
+                    default:
+                        Debug.Log(1);
+                        break;
+                }
+
                 Destroy(gameObject);
             }
             else if (layerName == "DropZone")
