@@ -1813,7 +1813,7 @@ GameObject:
   m_Component:
   - component: {fileID: 881156087}
   m_Layer: 0
-  m_Name: '@Manager'
+  m_Name: //Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1846,7 +1846,7 @@ GameObject:
   m_Component:
   - component: {fileID: 972693102}
   m_Layer: 0
-  m_Name: ///GameObject
+  m_Name: //GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2562,7 +2562,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1126235587}
   m_Layer: 0
-  m_Name: '#Camera'
+  m_Name: //Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3390,6 +3390,8 @@ MonoBehaviour:
   maxSpawnCount: 50
   spawnCountTxt: {fileID: 1219438841}
   countDownTxt: {fileID: 2143169871}
+  hpIncreasePerWave: 30
+  currentHpBonus: 0
 --- !u!4 &1494975633
 Transform:
   m_ObjectHideFlags: 0
