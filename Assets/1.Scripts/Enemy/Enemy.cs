@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public float enemyGold;
     private bool isDotActive = false;
     public bool isDead = false;
+    public GameObject hitEffect;
 
     [Header("Enemy UI")]
     public Text hpTxt;
@@ -86,6 +87,7 @@ public class Enemy : MonoBehaviour
         DamageText dt = hudText.GetComponent<DamageText>();
         dt.damage = damage;
         dt.itemID = attackerItemID;
+        Instantiate(hitEffect, transform.position, Quaternion.identity);
 
         if (currentHp < 0)
         {

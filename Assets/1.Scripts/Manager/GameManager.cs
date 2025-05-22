@@ -14,8 +14,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject enemy1Prefab;
     [SerializeField] private GameObject enemy2Prefab;
     [SerializeField] private GameObject enemy3Prefab;
+    [SerializeField] private GameObject bossPrefab;
+    
 
-    [SerializeField] private WaveData[] waves; // 여러 웨이브 데이터를 받아올 수 있도록 배열로
+   [SerializeField] private WaveData[] waves; // 여러 웨이브 데이터를 받아올 수 있도록 배열로
     private WaveData currentWave;
 
     [Header("재화")]
@@ -126,6 +128,12 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < currentWave.enemy2Counts; i++) spawnList.Add(enemy2Prefab);
         for (int i = 0; i < currentWave.enemy3Counts; i++) spawnList.Add(enemy3Prefab);
 
+
+        if (currentWaveIndex == 4)
+        {
+            spawnList.Insert(0, bossPrefab); // 맨 앞에 보스 추가
+            Debug.Log("보스 등장!");
+        }
         for (int i = 0; i < spawnList.Count; i++)
         {
             int rand = Random.Range(i, spawnList.Count);
@@ -162,6 +170,8 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+
+    #region 타이머
     IEnumerator TimerDown()
     {
         sec = 20;
@@ -188,4 +198,5 @@ public class GameManager : MonoBehaviour
         }
         
     }
+    #endregion
 }

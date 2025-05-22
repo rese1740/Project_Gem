@@ -238,6 +238,7 @@ MonoBehaviour:
   moveSpeed: 2
   enemyGold: 0
   isDead: 0
+  hitEffect: {fileID: 6726787794927010984, guid: 4ed62d3f109c5354bb6a421bb4e4166d, type: 3}
   hpTxt: {fileID: 2523196951006458109}
   hudDamageText: {fileID: 8652066202876847024, guid: cfc939276f99c4d4e9feea19a1ab88d9, type: 3}
   hudPos: {fileID: 3109293137641901451}

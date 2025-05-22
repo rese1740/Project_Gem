@@ -90,7 +90,7 @@ public class Draggable2D : MonoBehaviour
                 }
                 else if (myGem != null &&
                          myGem.itemData.itemID == slotGem.itemData.itemID &&
-                         myGem.currentRank == slotGem.currentRank && myGem.itemData.rank <= myGem.itemData.maxRank)
+                         myGem.currentRank == slotGem.currentRank && myGem.itemData.rank < myGem.itemData.maxRank)
                 {
                     slotGem.LevelUp();
                     Destroy(gameObject);
