@@ -15,5 +15,5 @@ MonoBehaviour:
   enemy1Counts: 35
   enemy2Counts: 0
   enemy3Counts: 0
-  spawnDelay: 1.5
+  spawnDelay: 1
   restTimeBetweenWaves: 20

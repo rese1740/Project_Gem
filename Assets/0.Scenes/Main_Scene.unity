@@ -1663,7 +1663,7 @@ Transform:
   m_GameObject: {fileID: 774745736}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.54, y: -4.82, z: 0}
+  m_LocalPosition: {x: -3.17, y: -4.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3377,9 +3377,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ddcae72ed18f282478e6405323fad319, type: 2}
   - {fileID: 11400000, guid: aa7b25536bd128b40bea4bc226f6ec62, type: 2}
   - {fileID: 11400000, guid: 0f37dc14faf84a44bb9652717ae440ce, type: 2}
-  gold: 10
-  maxGold: 50
-  goldUpGradeRequired: 25
+  gold: 15
+  maxGold: 30
+  goldUpGradeRequired: 15
   goldUpgradeTxt: {fileID: 1162404479}
   goldTxt: {fileID: 987842745}
   waveTxt: {fileID: 1281821889}
@@ -3388,7 +3388,7 @@ MonoBehaviour:
   sec: 0
   currentEnemyCount: 0
   currentSpawnCount: 0
-  maxSpawnCount: 50
+  maxSpawnCount: 20
   spawnCountTxt: {fileID: 1219438841}
   countDownTxt: {fileID: 2143169871}
   hpIncreasePerWave: 30
@@ -3710,7 +3710,7 @@ Transform:
   m_GameObject: {fileID: 1558845999}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.54, y: 3.11, z: 0}
+  m_LocalPosition: {x: -3.1700048, y: 3.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4957,7 +4957,7 @@ MonoBehaviour:
   - {fileID: 4773570925600160958, guid: 296eefafdbf153040b3919fe3ca55a8f, type: 3}
   - {fileID: 4773570925600160958, guid: e6ad5154305a8764d8ec6513ca70f78b, type: 3}
   - {fileID: 4773570925600160958, guid: b3237c85ce220354ba4ab12d6fb5bc2f, type: 3}
-  - {fileID: 4773570925600160958, guid: e6ad5154305a8764d8ec6513ca70f78b, type: 3}
+  - {fileID: 4773570925600160958, guid: bbbc44c6b6dc6b948be79f7e10871fa8, type: 3}
   - {fileID: 4773570925600160958, guid: 15b12b5c92bccd74bb3bd7ddc5270d98, type: 3}
   gemCost: 5
   emeraldCost: 7

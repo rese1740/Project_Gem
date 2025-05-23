@@ -18,17 +18,6 @@ public class SpawnManager2D : MonoBehaviour
         requiredGold[2].text = emeraldCost.ToString();
         requiredGold[3].text = diamondCost.ToString();
         requiredGold[4].text = sapphireCost.ToString();
-
-        if(gemCost >= 50)
-            gemCost = 50;
-        else if(rubyCost >= 50)
-            rubyCost = 52;
-        else if(diamondCost >= 50)  
-            diamondCost = 52;
-        else if (sapphireCost >= 50)
-            sapphireCost = 52;
-        else if(emeraldCost >= 50)
-            emeraldCost = 52;
     }
     public void SpawnGem()
     {

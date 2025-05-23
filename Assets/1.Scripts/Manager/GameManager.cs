@@ -129,7 +129,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < currentWave.enemy3Counts; i++) spawnList.Add(enemy3Prefab);
 
 
-        if (currentWaveIndex == 4)
+        if (currentWaveIndex ==  4)
         {
             spawnList.Insert(0, bossPrefab); // 맨 앞에 보스 추가
             Debug.Log("보스 등장!");
