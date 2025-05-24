@@ -72,6 +72,8 @@ public class Gem : MonoBehaviour
             {
                 currentTarget.ApplySlow(slowValue, 10f);
             }
+
+
         }
     }
 
