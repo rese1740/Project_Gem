@@ -97,10 +97,6 @@ public class Gem : MonoBehaviour
         {
             currentTarget = closestEnemy.GetComponent<Enemy>();
         }
-        else
-        {
-            Debug.Log("No enemies found!");
-        }
     }
 
 

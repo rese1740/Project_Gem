@@ -192,9 +192,9 @@ public class GameManager : MonoBehaviour
     {
         if(gold >= goldUpGradeRequired)
         {
-            maxGold += 25;
+            maxGold += 15;
             gold -= goldUpGradeRequired;
-            goldUpGradeRequired += 25;
+            goldUpGradeRequired += 15;
         }
         
     }
