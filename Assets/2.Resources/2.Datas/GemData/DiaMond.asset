@@ -26,22 +26,22 @@ MonoBehaviour:
     dotDamage: 0
     slowValue: 0
     attackRange: 50
-    critValue: 0.5
+    critValue: 0.4
   - attackValue: 42
     attackSpeed: 2
     dotDamage: 0
     slowValue: 0
     attackRange: 50
-    critValue: 0.5
+    critValue: 0.4
   - attackValue: 49
     attackSpeed: 2
     dotDamage: 0
     slowValue: 0
     attackRange: 50
-    critValue: 0.5
+    critValue: 0.4
   - attackValue: 56
     attackSpeed: 2
     dotDamage: 0
     slowValue: 0
     attackRange: 50
-    critValue: 0.5
+    critValue: 0.4

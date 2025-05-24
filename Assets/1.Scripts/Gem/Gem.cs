@@ -16,7 +16,7 @@ public class Gem : MonoBehaviour
 
     private float nextAttackTime = 0f;
     private Enemy currentTarget = null;
-
+    public GameObject mergeEffect;
     public int currentRank;
 
     public float scaleFactor = 5f;
@@ -66,7 +66,7 @@ public class Gem : MonoBehaviour
             }
             currentTarget.TakeDamage(finalAttackDamage, itemData.itemID);
 
-            StartCoroutine(DealDotDamage(currentTarget, dotDamage, 3, 1f));
+            StartCoroutine(DealDotDamage(currentTarget, dotDamage, 10, 0.2f));
 
             if (slowValue > 0)
             {
@@ -145,6 +145,8 @@ public class Gem : MonoBehaviour
         {
             currentRank++;
 
+            Instantiate(mergeEffect,gameObject.transform);
+
             ApplyRankStats();
 
             UpdateIcon();
@@ -158,15 +160,7 @@ public class Gem : MonoBehaviour
         attackRange = stats.attackRange;
         slowValue = stats.slowValue;
         critValue = stats.critValue;
-
-        if (itemData.itemID == "Emerald")
-        {
-            dotDamage = attackDamage * 0.3f;
-        }
-        else
-        {
-            dotDamage = 0f;
-        }
+        dotDamage = stats.dotDamage;
     }
 
     #endregion

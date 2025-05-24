@@ -21,27 +21,27 @@ MonoBehaviour:
   maxRank: 4
   rank: 1
   statsPerRank:
-  - attackValue: 50
+  - attackValue: 40
     attackSpeed: 2
-    dotDamage: 0
+    dotDamage: 4
     slowValue: 0
     attackRange: 50
     critValue: 0
-  - attackValue: 55
+  - attackValue: 45
     attackSpeed: 2
-    dotDamage: 0
-    slowValue: 0
-    attackRange: 50
-    critValue: 0
-  - attackValue: 60
-    attackSpeed: 3
-    dotDamage: 0
+    dotDamage: 6
     slowValue: 0
     attackRange: 50
     critValue: 0
   - attackValue: 50
     attackSpeed: 2
-    dotDamage: 0
+    dotDamage: 8
+    slowValue: 0
+    attackRange: 50
+    critValue: 0
+  - attackValue: 50
+    attackSpeed: 2
+    dotDamage: 10
     slowValue: 0
     attackRange: 50
     critValue: 0
