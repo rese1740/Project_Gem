@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
             spawnList[rand] = temp;
         }
         currentSpawnCount = spawnList.Count;
-        if (currentWaveIndex ==  0)
+        if (currentWaveIndex ==  4)
         {
             spawnList.Insert(0, bossPrefab); // 맨 앞에 보스 추가
             Debug.Log("보스 등장!");
