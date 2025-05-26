@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: 8ad00d5c4170ad7448a6df9506fa9055, type: 2}
+  attackEffectPrefab: {fileID: 3883390548530606850, guid: f3eb3fefbb1786f4fb587231abcf94c5, type: 3}
   attackDamage: 0
   attackSpeed: 0
   attackRange: 0

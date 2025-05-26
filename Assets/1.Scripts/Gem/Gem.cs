@@ -7,6 +7,7 @@ public class Gem : MonoBehaviour
     public GemData itemData;
     SpriteRenderer spriteRenderer;
     [Header("Get Stat")]
+    public GameObject attackEffectPrefab; 
     public float attackDamage;
     public float attackSpeed;
     public float attackRange;
@@ -51,31 +52,34 @@ public class Gem : MonoBehaviour
         }
     }
 
-    
+
 
     #region АјАн
     void Attack()
     {
-        if (currentTarget != null)
+        if (currentTarget != null && attackEffectPrefab != null)
         {
-            float finalAttackDamage = attackDamage;
+            Vector3 startPos = transform.position;
+            GameObject effect = Instantiate(attackEffectPrefab, startPos, Quaternion.identity);
 
-            if (Random.value <= critValue)
+            Projectile projectile = effect.GetComponent<Projectile>();
+            if (projectile != null)
             {
-                finalAttackDamage *= 2f;
+                projectile.Init(
+                    startPos,
+                    currentTarget,
+                    attackDamage,
+                    dotDamage,
+                    critValue,
+                    slowValue,
+                    itemData.itemID
+                );
             }
-            currentTarget.TakeDamage(finalAttackDamage, itemData.itemID);
 
-            StartCoroutine(DealDotDamage(currentTarget, dotDamage, 10, 0.2f));
-
-            if (slowValue > 0)
-            {
-                currentTarget.ApplySlow(slowValue, 10f);
-            }
-
-
+            nextAttackTime = Time.time + attackSpeed;
         }
     }
+
 
 
 
