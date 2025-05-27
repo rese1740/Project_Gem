@@ -25,6 +25,10 @@ public class Projectile : MonoBehaviour
         itemID = id;
     }
 
+    private void Start()
+    {
+         transform.rotation = Quaternion.Euler(0,90,0);
+    }
     void Update()
     {
         if (target == null || target.isDead)
