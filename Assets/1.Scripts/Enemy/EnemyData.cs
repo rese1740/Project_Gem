@@ -12,6 +12,7 @@ public class EnemyData : ScriptableObject
     public float currentHp;
     public float moveSpeed = 2f;
     public float enemyGold = 0f;
+    public int enemyScore;
 
     public void Init()
     {

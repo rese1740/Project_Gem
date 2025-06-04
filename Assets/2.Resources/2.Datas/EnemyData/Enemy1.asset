@@ -16,3 +16,4 @@ MonoBehaviour:
   currentHp: 0
   moveSpeed: 2
   enemyGold: 3
+  enemyScore: 50

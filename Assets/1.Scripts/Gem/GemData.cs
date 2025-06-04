@@ -26,6 +26,7 @@ public class GemStats
     public float slowValue;
     public float attackRange;
     public float critValue;
+ 
 }
 
 

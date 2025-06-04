@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: Ruby
   rankIcons:
-  - {fileID: 21300000, guid: 5b3a1c4f2d2e1f846a6e76cd2c5aa23b, type: 3}
+  - {fileID: 21300000, guid: 51ffb9fdb4397f145b12a763174d3123, type: 3}
   - {fileID: 21300000, guid: 73be31b43671a48419b4262ad1d3a869, type: 3}
   - {fileID: 21300000, guid: a81346d5e634cb5488aaf5635cc229a0, type: 3}
   - {fileID: 21300000, guid: 66eb32c73d649cd4f9fbd5f3e032498f, type: 3}

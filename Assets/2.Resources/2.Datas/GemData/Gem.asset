@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: BlueGem
   rankIcons:
-  - {fileID: 21300000, guid: d4d464255adb8b3489f667a17e72b2a3, type: 3}
+  - {fileID: 21300000, guid: 8b7c4bc8414a21849b159e328b9debc6, type: 3}
   - {fileID: 21300000, guid: e442f0de696f2f244acb118d31a4194b, type: 3}
   - {fileID: 21300000, guid: d936b2b66ffb9f24397fdbcc17f4e754, type: 3}
   - {fileID: 21300000, guid: b52e3d5233afc6241a953a68fa449a2d, type: 3}

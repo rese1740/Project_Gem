@@ -46,6 +46,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text spawnCountTxt;
     [SerializeField] private Text countDownTxt;
 
+    [Header("Á¡¼ö")]
+    public int currentscore;
+    [SerializeField] private Text scoreTxt;
+
     [Header("Enemy Scaling")]
     [SerializeField] private float hpIncreasePerWave = 30f;
     public float currentHpBonus = 0f;
@@ -65,11 +69,18 @@ public class GameManager : MonoBehaviour
     {
         spawnCountTxt.text = $"{currentEnemyCount}/{maxSpawnCount}";
         goldUpgradeTxt.text = $"{maxGold}";
+        waveTxt.text = $"Wave : {displayWaveIndex}";
+        restTxt.text = sec.ToString();
+        goldTxt.text = gold.ToString();
+        scoreTxt.text = currentscore.ToString();
 
-        if(gold >= maxGold)
+        if (gold >= maxGold)
             gold = maxGold;
 
-        goldTxt.text = gold.ToString();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
 
         if (currentEnemyCount >= maxSpawnCount)
         {
@@ -93,10 +104,6 @@ public class GameManager : MonoBehaviour
             countDownTxt.gameObject.SetActive(false);
             currentTime = startTime;
         }
-
-        waveTxt.text = $"{displayWaveIndex} Wave";
-        restTxt.text = sec.ToString();
-        
     }
 
 

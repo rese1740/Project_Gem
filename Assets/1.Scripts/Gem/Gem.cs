@@ -21,6 +21,7 @@ public class Gem : MonoBehaviour
     public int currentRank;
 
     public float scaleFactor = 5f;
+    public float returnFactor = 0.1f;
     public float duration = 0.5f;
 
     void Start()
@@ -131,11 +132,11 @@ public class Gem : MonoBehaviour
 
     void PlayDoTween()
     {
-        transform.localScale = Vector3.one * 0.2f;
+        transform.localScale = Vector3.one * returnFactor;
 
         transform.DOScale(Vector3.one * scaleFactor, duration).OnKill(() =>
         {
-            transform.DOScale(Vector3.one * 0.2f, duration);
+            transform.DOScale(Vector3.one * returnFactor, duration);
         });
     }
 

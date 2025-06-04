@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public float currentHp;
     public float moveSpeed;
     public float enemyGold;
+    public int enemyScore;
     private bool isDotActive = false;
     public bool isDead = false;
     public GameObject hitEffect;
@@ -29,6 +30,7 @@ public class Enemy : MonoBehaviour
 
         maxHp = enemyData.maxHp + bonusHp;
         currentHp = maxHp;
+        enemyScore = enemyData.enemyScore;
 
         moveSpeed = enemyData.moveSpeed;
         enemyData.Init();
@@ -120,6 +122,7 @@ public class Enemy : MonoBehaviour
         {
             GameManager.Instance.currentEnemyCount--;
             GameManager.Instance.gold += enemyGold;
+            GameManager.Instance.currentscore += enemyScore;
             Destroy(gameObject);
             isDead = true;
         }
