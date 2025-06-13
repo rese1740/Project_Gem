@@ -58,8 +58,8 @@ MonoBehaviour:
   critValue: 0
   mergeEffect: {fileID: 7618334711553118981, guid: 9bb6cb675b2ff364b84164322443d5c0, type: 3}
   currentRank: 0
-  scaleFactor: 0.5
-  returnFactor: 0.25
+  scaleFactor: 0.15
+  returnFactor: 0.06
   duration: 0.3
 --- !u!212 &4614072709732977757
 SpriteRenderer:
@@ -102,7 +102,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 77d5df1666ec9af4eac2e164b4b087da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ac3bb41e9fceeb3438431d3147e45bd5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -162,7 +162,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.12, y: 5.12}
+    oldSize: {x: 20.48, y: 20.48}
     newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

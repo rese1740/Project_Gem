@@ -3,6 +3,7 @@ using UnityEngine;
 public class MouseHoverDetector : MonoBehaviour
 {
     private SpriteRenderer lastRenderer;
+    private Color origincolor;
 
     private void Update()
     {
@@ -18,7 +19,10 @@ public class MouseHoverDetector : MonoBehaviour
             // 이전에 바꿨던 오브젝트의 색상 복구
             if (lastRenderer != null && lastRenderer != sr)
             {
-                lastRenderer.color = Color.white;
+                Color color = lastRenderer.color;
+                color.a = 10f;
+                origincolor = color;
+                lastRenderer.color = origincolor;
             }
 
             if (sr != null)
@@ -37,7 +41,9 @@ public class MouseHoverDetector : MonoBehaviour
         {
             if (lastRenderer != null)
             {
-                lastRenderer.color = Color.white;
+                origincolor = Color.white;
+                origincolor.a = 0.1f;
+                lastRenderer.color = origincolor;
                 lastRenderer = null;
             }
         }

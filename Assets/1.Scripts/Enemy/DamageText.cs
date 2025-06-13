@@ -35,7 +35,7 @@ public class DamageText : MonoBehaviour
                 tmp.color = Color.cyan;
                 break;
             default:
-                tmp.color = Color.white;
+                tmp.color = Color.magenta;
                 break;
         }
         alpha = tmp.color;

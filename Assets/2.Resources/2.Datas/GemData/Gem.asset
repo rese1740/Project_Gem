@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemID: BlueGem
   rankIcons:
-  - {fileID: 21300000, guid: 8b7c4bc8414a21849b159e328b9debc6, type: 3}
-  - {fileID: 21300000, guid: e442f0de696f2f244acb118d31a4194b, type: 3}
-  - {fileID: 21300000, guid: d936b2b66ffb9f24397fdbcc17f4e754, type: 3}
-  - {fileID: 21300000, guid: b52e3d5233afc6241a953a68fa449a2d, type: 3}
+  - {fileID: 21300000, guid: 66461f09ce26c6742a6f06ccadbbae67, type: 3}
+  - {fileID: 21300000, guid: 57f063c5890766d4394d9e37debfecc5, type: 3}
+  - {fileID: 21300000, guid: 536b1681518cb2b41ba8580c17121ef4, type: 3}
+  - {fileID: 21300000, guid: ddc1749e70533f84e8ff9d240cb3b87f, type: 3}
   maxRank: 4
   rank: 1
   statsPerRank:
