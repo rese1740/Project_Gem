@@ -40,6 +40,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float sec = 0f;
 
     [Header("몬스터 수")]
+    public Image WarringImg;
+    public Sprite[] WarringSprite;
+    private bool isWarring = false;
     public int currentEnemyCount;
     [SerializeField] private int currentSpawnCount;
     [SerializeField] private int maxSpawnCount = 50;
@@ -84,6 +87,13 @@ public class GameManager : MonoBehaviour
 
         if (currentEnemyCount >= maxSpawnCount)
         {
+            if(isWarring == false)
+            {
+                isWarring = true;
+            WarringImg.gameObject.SetActive(true);
+            StartCoroutine(LogWarring());
+            }
+
             countDownTxt.gameObject.SetActive(true);
             UpdateTimerUI();
             if (currentTime > 0)
@@ -102,11 +112,22 @@ public class GameManager : MonoBehaviour
         else
         {
             countDownTxt.gameObject.SetActive(false);
+            WarringImg.gameObject .SetActive(false);
+            isWarring = false;
             currentTime = startTime;
         }
     }
 
-
+    IEnumerator LogWarring()
+    {
+        while (true)
+        {
+            WarringImg.sprite = WarringSprite[0];
+            yield return new WaitForSeconds(0.5f);
+            WarringImg.sprite = WarringSprite[1];
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
 
     #region Wave 진행
     void StartWave()
