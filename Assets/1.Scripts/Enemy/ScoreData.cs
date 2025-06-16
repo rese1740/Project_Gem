@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Score/ScoreData")]
 public class ScoreData: ScriptableObject
 {
-    public int currentscore;
+    public int maxScore;
 
 
 }

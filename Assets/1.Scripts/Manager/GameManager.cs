@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     public float gold;
     public float maxGold;
     public float goldUpGradeRequired;
-    [SerializeField] private TextMeshProUGUI goldUpgradeTxt;
     [SerializeField] private TextMeshProUGUI goldTxt;
 
 
@@ -40,6 +39,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float sec = 0f;
 
     [Header("몬스터 수")]
+    [SerializeField] private GameObject End_Panel;
     public Image WarringImg;
     public Sprite[] WarringSprite;
     private bool isWarring = false;
@@ -50,8 +50,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI countDownTxt;
 
     [Header("점수")]
+    public ScoreData ScoreData;
     public int currentscore;
     [SerializeField] private TextMeshProUGUI scoreTxt;
+    [SerializeField] private TextMeshProUGUI currentScoreTxt;
+    [SerializeField] private TextMeshProUGUI maxScoreTxt;
+
 
     [Header("Enemy Scaling")]
     [SerializeField] private float hpIncreasePerWave = 30f;
@@ -71,11 +75,20 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         spawnCountTxt.text = $"{currentEnemyCount}/{maxSpawnCount}";
-        goldUpgradeTxt.text = $"{maxGold}";
         waveTxt.text = $"Wave : {displayWaveIndex}";
         restTxt.text = sec.ToString();
-        goldTxt.text = gold.ToString();
+        goldTxt.text = $"{gold} / {maxGold}";
         scoreTxt.text = currentscore.ToString();
+
+        //점수판
+        currentScoreTxt.text = currentscore.ToString();
+        maxScoreTxt.text = ScoreData.maxScore.ToString();  
+
+        if(currentscore >= ScoreData.maxScore)
+        {
+            ScoreData.maxScore = currentscore;
+        }
+        
 
         if (gold >= maxGold)
             gold = maxGold;
@@ -101,7 +114,8 @@ public class GameManager : MonoBehaviour
                 currentTime -= Time.deltaTime;
                 if (currentTime < 0)
                 {
-                    SceneManager.LoadScene("Test");
+                    Time.timeScale = 0;
+                    End_Panel.SetActive(true);
                 }
                 else if (currentTime <= 3)
                 {
@@ -150,7 +164,6 @@ public class GameManager : MonoBehaviour
     IEnumerator SpawnEnemies()
     {
         List<GameObject> spawnList = new List<GameObject>();
-        Debug.Log(currentWave);
    
         for (int i = 0; i < currentWave.enemy1Counts; i++) spawnList.Add(enemy1Prefab);
         for (int i = 0; i < currentWave.enemy2Counts; i++) spawnList.Add(enemy2Prefab);
@@ -165,7 +178,7 @@ public class GameManager : MonoBehaviour
             spawnList[rand] = temp;
         }
         currentSpawnCount = spawnList.Count;
-        if (currentWaveIndex ==  4)
+        if (currentWaveIndex % 4 == 0 && currentWaveIndex != 0)
         {
             spawnList.Insert(0, bossPrefab); // 맨 앞에 보스 추가
             Debug.Log("보스 등장!");

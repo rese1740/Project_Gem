@@ -18,6 +18,7 @@ public class Draggable2D : MonoBehaviour
 
     void OnMouseDown()
     {
+        Debug.Log("드래그 시작");
         isDragging = true;
         mouseDownPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         offset = transform.position - new Vector3(mouseDownPos.x, mouseDownPos.y, transform.position.z);
@@ -37,6 +38,7 @@ public class Draggable2D : MonoBehaviour
 
     void OnMouseUp()
     {
+        Debug.Log("드래그 끝");
         float dist = Vector3.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), mouseDownPos);
         if (dist < 0.1f) // 클릭으로 판단
         {
