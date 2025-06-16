@@ -11,8 +11,6 @@ public class Draggable2D : MonoBehaviour
 
     private Gem myGem;
 
-    public float dragThreshold = 0.1f; // 드래그 인식 임계값
-
     void Start()
     {
         myGem = GetComponent<Gem>();
@@ -20,7 +18,7 @@ public class Draggable2D : MonoBehaviour
 
     void OnMouseDown()
     {
-        isDragging = false;
+        isDragging = true;
         mouseDownPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         offset = transform.position - new Vector3(mouseDownPos.x, mouseDownPos.y, transform.position.z);
         originalPosition = transform.position;
@@ -33,17 +31,18 @@ public class Draggable2D : MonoBehaviour
     void OnMouseDrag()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        float dragDistance = Vector3.Distance(mouseDownPos, mousePos);
-
-        if (dragDistance > dragThreshold)
-        {
             isDragging = true;
             transform.position = new Vector3(mousePos.x, mousePos.y, transform.position.z) + offset;
-        }
     }
 
     void OnMouseUp()
     {
+        float dist = Vector3.Distance(Camera.main.ScreenToWorldPoint(Input.mousePosition), mouseDownPos);
+        if (dist < 0.1f) // 클릭으로 판단
+        {
+            isDragging = false;
+            return;
+        }
         if (!isDragging)
         {
             return;

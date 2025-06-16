@@ -25,14 +25,14 @@ public class GameManager : MonoBehaviour
     public float maxGold;
     public float goldUpGradeRequired;
     [SerializeField] private TextMeshProUGUI goldUpgradeTxt;
-    [SerializeField] private Text goldTxt;
+    [SerializeField] private TextMeshProUGUI goldTxt;
 
 
     [Header("Wave")]
     private int currentWaveIndex = 0;
     private int displayWaveIndex = 0;
-    [SerializeField] private Text waveTxt;
-    [SerializeField] private Text restTxt;
+    [SerializeField] private TextMeshProUGUI waveTxt;
+    [SerializeField] private TextMeshProUGUI restTxt;
 
     [Header("시간")]
     [SerializeField] private float startTime = 10f;
@@ -46,12 +46,12 @@ public class GameManager : MonoBehaviour
     public int currentEnemyCount;
     [SerializeField] private int currentSpawnCount;
     [SerializeField] private int maxSpawnCount = 50;
-    [SerializeField] private Text spawnCountTxt;
-    [SerializeField] private Text countDownTxt;
+    [SerializeField] private TextMeshProUGUI spawnCountTxt;
+    [SerializeField] private TextMeshProUGUI countDownTxt;
 
     [Header("점수")]
     public int currentscore;
-    [SerializeField] private Text scoreTxt;
+    [SerializeField] private TextMeshProUGUI scoreTxt;
 
     [Header("Enemy Scaling")]
     [SerializeField] private float hpIncreasePerWave = 30f;
