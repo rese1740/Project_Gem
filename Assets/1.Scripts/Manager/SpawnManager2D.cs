@@ -45,8 +45,9 @@ public class SpawnManager2D : MonoBehaviour
 
         // 랜덤 빈 공간 선택 및 즉시 자식으로 설정
         Transform randomPoint = emptyPoints[Random.Range(0, emptyPoints.Count)];
+        Vector3 offset = new Vector3(0,0,-1);
 
-        GameObject cardInstance = Instantiate(cardPrefabList[index], randomPoint.position, Quaternion.identity, randomPoint); // <- 부모 바로 설정
+        GameObject cardInstance = Instantiate(cardPrefabList[index], randomPoint.position + offset, Quaternion.identity, randomPoint); // <- 부모 바로 설정
         GameManager.Instance.gold -= cost;
         cost += upgradeGold;
     }

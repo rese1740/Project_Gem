@@ -98,7 +98,8 @@ public class Draggable2D : MonoBehaviour
                 }
                 else
                 {
-                    transform.position = originalPosition;
+                    Vector3 offset = new Vector3(0, 0, -1);
+                    transform.position = originalPosition + offset;
                     transform.SetParent(originalParent);  
                 }
             }
