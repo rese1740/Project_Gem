@@ -14,8 +14,8 @@ public class SpawnManager2D : MonoBehaviour
     private void Update()
     {
         requiredGold[0].text = gemCost.ToString();
-        requiredGold[1].text = rubyCost.ToString();
-        requiredGold[2].text = emeraldCost.ToString();
+        requiredGold[2].text = rubyCost.ToString();
+        requiredGold[1].text = emeraldCost.ToString();
         requiredGold[3].text = diamondCost.ToString();
         requiredGold[4].text = sapphireCost.ToString();
     }

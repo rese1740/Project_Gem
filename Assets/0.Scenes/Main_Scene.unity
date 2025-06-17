@@ -2722,7 +2722,7 @@ GameObject:
   - component: {fileID: 855960938}
   - component: {fileID: 855960937}
   m_Layer: 5
-  m_Name: Gem_Cost
+  m_Name: Diamond_Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3876,7 +3876,7 @@ GameObject:
   - component: {fileID: 1169827765}
   - component: {fileID: 1169827764}
   m_Layer: 5
-  m_Name: Gem_Cost
+  m_Name: Ruby_Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4994,7 +4994,7 @@ GameObject:
   - component: {fileID: 1476976316}
   - component: {fileID: 1476976315}
   m_Layer: 5
-  m_Name: Gem_Cost
+  m_Name: Emerald_Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7350,7 +7350,7 @@ GameObject:
   - component: {fileID: 2056741383}
   - component: {fileID: 2056741382}
   m_Layer: 5
-  m_Name: Gem_Cost
+  m_Name: Sapphire_Cost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
