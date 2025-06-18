@@ -5325,7 +5325,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ddcae72ed18f282478e6405323fad319, type: 2}
   - {fileID: 11400000, guid: aa7b25536bd128b40bea4bc226f6ec62, type: 2}
   - {fileID: 11400000, guid: 0f37dc14faf84a44bb9652717ae440ce, type: 2}
-  gold: 15
+  gold: 7
   maxGold: 30
   goldUpGradeRequired: 15
   goldTxt: {fileID: 1145144704}
