@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -59,7 +59,7 @@ MonoBehaviour:
   mergeEffect: {fileID: 7618334711553118981, guid: 9bb6cb675b2ff364b84164322443d5c0, type: 3}
   currentRank: 0
   scaleFactor: 0.08
-  returnFactor: 0.06
+  returnFactor: 0.05
   duration: 0.3
 --- !u!212 &4614072709732977757
 SpriteRenderer:
