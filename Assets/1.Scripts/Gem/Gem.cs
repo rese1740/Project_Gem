@@ -15,10 +15,11 @@ public class Gem : MonoBehaviour
     public float slowValue;
     public float critValue;
 
-    private float nextAttackTime = 0f;
+    private float nextAttackTime = 0;
     private Enemy currentTarget = null;
     public GameObject mergeEffect;
     public int currentRank;
+    private GameObject parentSlot;
 
     public float scaleFactor = 5f;
     public float returnFactor = 0.1f;
@@ -27,6 +28,7 @@ public class Gem : MonoBehaviour
     void Start()
     {
         PlayDoTween();
+      
 
         currentRank = itemData.rank;
         SetTargetToClosestEnemy();
@@ -37,6 +39,8 @@ public class Gem : MonoBehaviour
             ApplyRankStats();
             UpdateIcon();
         }
+
+        parentSlot = transform.parent.gameObject;
     }
 
 
@@ -148,7 +152,7 @@ public class Gem : MonoBehaviour
         {
             currentRank++;
 
-            Instantiate(mergeEffect,gameObject.transform);
+            Instantiate(mergeEffect, parentSlot.transform.position,Quaternion.identity, parentSlot.transform);
 
             ApplyRankStats();
 

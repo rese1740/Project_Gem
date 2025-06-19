@@ -58,7 +58,7 @@ MonoBehaviour:
   critValue: 0
   mergeEffect: {fileID: 7618334711553118981, guid: 9bb6cb675b2ff364b84164322443d5c0, type: 3}
   currentRank: 0
-  scaleFactor: 0.1
+  scaleFactor: 0.08
   returnFactor: 0.06
   duration: 0.3
 --- !u!212 &4614072709732977757
@@ -125,7 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8ae140e242b458498124c17a59afe29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragThreshold: 0.1
 --- !u!61 &4001770362523849209
 BoxCollider2D:
   m_ObjectHideFlags: 0

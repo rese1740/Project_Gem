@@ -58,7 +58,7 @@ MonoBehaviour:
   critValue: 0
   mergeEffect: {fileID: 7618334711553118981, guid: 9bb6cb675b2ff364b84164322443d5c0, type: 3}
   currentRank: 0
-  scaleFactor: 0.1
+  scaleFactor: 0.08
   returnFactor: 0.045
   duration: 0.3
 --- !u!212 &4614072709732977757
