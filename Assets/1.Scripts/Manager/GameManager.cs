@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public float maxGold;
     public float goldUpGradeRequired;
     [SerializeField] private TextMeshProUGUI goldTxt;
+    [SerializeField] private Image goldUpImg;
 
 
     [Header("Wave")]
@@ -77,7 +78,7 @@ public class GameManager : MonoBehaviour
         spawnCountTxt.text = $"{currentEnemyCount}/{maxSpawnCount}";
         waveTxt.text = $"Wave : {displayWaveIndex}";
         restTxt.text = sec.ToString();
-        goldTxt.text = $"{gold} / {maxGold}";
+        goldTxt.text = $"{gold.ToString("F0")} / {maxGold}";
         scoreTxt.text = currentscore.ToString();
 
         //Á¡¼öÆÇ
@@ -92,6 +93,15 @@ public class GameManager : MonoBehaviour
 
         if (gold >= maxGold)
             gold = maxGold;
+
+        if(gold >= goldUpGradeRequired)
+        {
+            goldUpImg.gameObject.SetActive(true);    
+        }
+        else
+        {
+            goldUpImg.gameObject.SetActive(false);
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
