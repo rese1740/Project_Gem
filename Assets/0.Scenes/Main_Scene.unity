@@ -4026,7 +4026,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 1178819107}
-  sfxClips: []
+  sfxClips:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1279475640
 GameObject:
   m_ObjectHideFlags: 0
@@ -5351,6 +5355,41 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ddcae72ed18f282478e6405323fad319, type: 2}
   - {fileID: 11400000, guid: aa7b25536bd128b40bea4bc226f6ec62, type: 2}
   - {fileID: 11400000, guid: 0f37dc14faf84a44bb9652717ae440ce, type: 2}
+  - {fileID: 11400000, guid: e48f50305b0674c4fa886fee4a114b4a, type: 2}
+  - {fileID: 11400000, guid: 1189697d3cb9a2749b61264a93bf377d, type: 2}
+  - {fileID: 11400000, guid: 8c572363ca63e7f4f9edf6998a750d83, type: 2}
+  - {fileID: 11400000, guid: 76510366ae6a3d04a854279eda18d2ea, type: 2}
+  - {fileID: 11400000, guid: 971e71ef99d4dc145b85f0456bd72c4c, type: 2}
+  - {fileID: 11400000, guid: e0c5617f74433f44d895b4aff9b990d2, type: 2}
+  - {fileID: 11400000, guid: df679036e552ee541aa6450552d7ab4d, type: 2}
+  - {fileID: 11400000, guid: 1236a1b88d1275c42a66f8cda931b9d9, type: 2}
+  - {fileID: 11400000, guid: 32c4a971408e81041a2134a5a20ff560, type: 2}
+  - {fileID: 11400000, guid: 267953aab8de9aa4282e692d26797327, type: 2}
+  - {fileID: 11400000, guid: bf455d1f7e5255b4da70121a324dfac1, type: 2}
+  - {fileID: 11400000, guid: 75143f374a7a6244aa9385425ada4905, type: 2}
+  - {fileID: 11400000, guid: 71d3d09ee20f5344db03fb0f1c77da5f, type: 2}
+  - {fileID: 11400000, guid: ffc06ca22aee86d4db4f8a96932fd0df, type: 2}
+  - {fileID: 11400000, guid: a6cc03fff51e15b43ac31b947a5cbc57, type: 2}
+  - {fileID: 11400000, guid: 0f2934e0c23b1874ab1f4816f00f6eea, type: 2}
+  - {fileID: 11400000, guid: adc2fd932eaf8a64eb63bd2279accd08, type: 2}
+  - {fileID: 11400000, guid: 32b73358cb07b6448a807dfb8b1753f4, type: 2}
+  - {fileID: 11400000, guid: cb6dd97a41472134dacc3c8fc30bd768, type: 2}
+  - {fileID: 11400000, guid: c46f5c3d9b7ba7344bd9d39d9efcef83, type: 2}
+  - {fileID: 11400000, guid: cda9f86c8575eb848a03665b38ecfb71, type: 2}
+  - {fileID: 11400000, guid: c3a33882b81bff14d82a111c72289d52, type: 2}
+  - {fileID: 11400000, guid: 16a61a877affba74a9d42eaebf67a649, type: 2}
+  - {fileID: 11400000, guid: 9bae4e3d17bbd13478c64c3ebe0b0f19, type: 2}
+  - {fileID: 11400000, guid: fe794111820b8b943833da6d6f3d0207, type: 2}
+  - {fileID: 11400000, guid: b5ac9d685ee37bc409a464c5c3658ff6, type: 2}
+  - {fileID: 11400000, guid: a8be2bd6135fea34c9ad40544777f712, type: 2}
+  - {fileID: 11400000, guid: ae371d3d2db048f41b875ac4ad83ad62, type: 2}
+  - {fileID: 11400000, guid: a9cf4dcc72bffb949886bb34cfe2105b, type: 2}
+  - {fileID: 11400000, guid: 8ff70e82efb042f45b1ec7a7bf43c86d, type: 2}
+  - {fileID: 11400000, guid: 46501e9d1035f4e4aa0038b9cb673cca, type: 2}
+  - {fileID: 11400000, guid: 59ba143f39a9ccf40ac3455f22277b0d, type: 2}
+  - {fileID: 11400000, guid: 65e0c35ad47441c40bed5d94aaace93d, type: 2}
+  - {fileID: 11400000, guid: e78e40d78cb1d4946a2fd709d4dd8224, type: 2}
+  - {fileID: 11400000, guid: ae1b32a624e20d34ebe4f9f677e829bb, type: 2}
   gold: 7
   maxGold: 30
   goldUpGradeRequired: 15

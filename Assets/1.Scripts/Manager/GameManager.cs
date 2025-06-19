@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,7 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [Header("½ºÆù ¼³Á¤")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField] private Transform spawnPosition;
     [SerializeField] private GameObject enemy1Prefab;
     [SerializeField] private GameObject enemy2Prefab;
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
    [SerializeField] private WaveData[] waves; 
     private WaveData currentWave;
 
-    [Header("ÀçÈ­")]
+    [Header("ï¿½ï¿½È­")]
     public float gold;
     public float maxGold;
     public float goldUpGradeRequired;
@@ -34,12 +35,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI waveTxt;
     [SerializeField] private TextMeshProUGUI restTxt;
 
-    [Header("½Ã°£")]
+    [Header("ï¿½Ã°ï¿½")]
     [SerializeField] private float startTime = 10f;
     private float currentTime;
     [SerializeField] private float sec = 0f;
 
-    [Header("¸ó½ºÅÍ ¼ö")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½")]
     [SerializeField] private GameObject End_Panel;
     public Image WarringImg;
     public Sprite[] WarringSprite;
@@ -50,7 +51,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI spawnCountTxt;
     [SerializeField] private TextMeshProUGUI countDownTxt;
 
-    [Header("Á¡¼ö")]
+    [Header("ï¿½ï¿½ï¿½ï¿½")]
     public ScoreData ScoreData;
     public int currentscore;
     [SerializeField] private TextMeshProUGUI scoreTxt;
@@ -81,7 +82,7 @@ public class GameManager : MonoBehaviour
         goldTxt.text = $"{gold.ToString("F0")} / {maxGold}";
         scoreTxt.text = currentscore.ToString();
 
-        //Á¡¼öÆÇ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         currentScoreTxt.text = currentscore.ToString();
         maxScoreTxt.text = ScoreData.maxScore.ToString();  
 
@@ -153,7 +154,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    #region Wave ÁøÇà
+    #region Wave ï¿½ï¿½ï¿½ï¿½
     void StartWave()
     {
         if (currentWaveIndex < waves.Length)
@@ -166,7 +167,11 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("¸ðµç ¿þÀÌºê Å¬¸®¾î!");
+            currentHpBonus = currentWaveIndex * hpIncreasePerWave;
+            currentWave = waves[waves.Length];
+            displayWaveIndex++;
+            StartCoroutine(SpawnEnemies());
+            Debug.Log("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ Å¬ï¿½ï¿½ï¿½ï¿½!");
         }
     }
 
@@ -190,8 +195,8 @@ public class GameManager : MonoBehaviour
         currentSpawnCount = spawnList.Count;
         if (currentWaveIndex % 4 == 0 && currentWaveIndex != 0)
         {
-            spawnList.Insert(0, bossPrefab); // ¸Ç ¾Õ¿¡ º¸½º Ãß°¡
-            Debug.Log("º¸½º µîÀå!");
+            spawnList.Insert(0, bossPrefab); // ï¿½ï¿½ ï¿½Õ¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
         }
         foreach (var enemyPrefab in spawnList)
         {
@@ -222,7 +227,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
 
-    #region Å¸ÀÌ¸Ó
+    #region Å¸ï¿½Ì¸ï¿½
     IEnumerator TimerDown()
     {
         sec = 20;
