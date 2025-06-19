@@ -16,6 +16,15 @@ public class SFXManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+    sfxDict = new Dictionary<string, AudioClip>();
+    foreach (var clip in sfxClips)
+    {
+        if (clip != null)
+        {
+            sfxDict[clip.name] = clip;
+        }
+    }
     }
 
     public void PlaySFX(string clipName)

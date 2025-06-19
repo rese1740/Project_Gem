@@ -59,11 +59,12 @@ public class Gem : MonoBehaviour
 
 
 
-    #region °ø°Ý
+    #region ï¿½ï¿½ï¿½ï¿½
     void Attack()
     {
         if (currentTarget != null && attackEffectPrefab != null)
         {
+      
             Vector3 startPos = transform.position;
             GameObject effect = Instantiate(attackEffectPrefab, startPos, Quaternion.identity);
 
@@ -111,7 +112,7 @@ public class Gem : MonoBehaviour
     }
 
 
-    // µµÆ® µ¥¹ÌÁö ÄÚ·çÆ¾
+    // ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾
     IEnumerator DealDotDamage(Enemy enemy, float damagePerTick, int tickCount, float interval)
     {
         for (int i = 0; i < tickCount; i++)
@@ -125,7 +126,7 @@ public class Gem : MonoBehaviour
     }
     #endregion
 
-    #region ÇÕÃ¼
+    #region ï¿½ï¿½Ã¼
     void UpdateIcon()
     {
         if (itemData != null && spriteRenderer != null && currentRank >= 1 && currentRank <= itemData.rankIcons.Length)

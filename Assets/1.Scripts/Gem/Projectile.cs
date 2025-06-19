@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour
     public void Init(Vector3 originPos, Enemy targetEnemy, float dmg, float dot, float crit, float slow, string id)
     {
         origin = originPos;
-        transform.position = origin; // ÀÌ ÁÙÀÌ Áß¿ä!
+        transform.position = origin; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß¿ï¿½!
         target = targetEnemy;
         damage = dmg;
         dotDamage = dot;
@@ -48,6 +48,7 @@ public class Projectile : MonoBehaviour
 
     void Impact()
     {
+              SFXManager.Instance.PlaySFX("0.Attack_Sound");
         float finalDamage = damage;
         if (Random.value <= critChance)
         {
