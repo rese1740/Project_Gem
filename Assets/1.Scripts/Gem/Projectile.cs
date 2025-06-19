@@ -48,7 +48,7 @@ public class Projectile : MonoBehaviour
 
     void Impact()
     {
-              SFXManager.Instance.PlaySFX("0.Attack_Sound");
+              SFXManager.Instance.PlaySFX("Attack_Sound");
         float finalDamage = damage;
         if (Random.value <= critChance)
         {

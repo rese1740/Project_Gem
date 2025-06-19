@@ -112,18 +112,7 @@ public class Gem : MonoBehaviour
     }
 
 
-    // ��Ʈ ������ �ڷ�ƾ
-    IEnumerator DealDotDamage(Enemy enemy, float damagePerTick, int tickCount, float interval)
-    {
-        for (int i = 0; i < tickCount; i++)
-        {
-            yield return new WaitForSeconds(interval);
-            if (enemy != null)
-            {
-                enemy.TakeDamage(damagePerTick, itemData.itemID);
-            }
-        }
-    }
+
     #endregion
 
     #region ��ü
@@ -148,6 +137,7 @@ public class Gem : MonoBehaviour
     public void LevelUp()
     {
         PlayDoTween();
+        SFXManager.Instance.PlaySFX("Merge_Sound");
 
         if (currentRank < itemData.maxRank)
         {

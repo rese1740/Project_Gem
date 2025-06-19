@@ -27,7 +27,6 @@ public class SpawnManager2D : MonoBehaviour
             return;
         }
 
-        // 빈 공간 탐색
         List<Transform> emptyPoints = new List<Transform>();
         foreach (var point in spawnPoints)
         {
@@ -47,6 +46,7 @@ public class SpawnManager2D : MonoBehaviour
         Transform randomPoint = emptyPoints[Random.Range(0, emptyPoints.Count)];
         Vector3 offset = new Vector3(0,0,-1);
 
+        SFXManager.Instance.PlaySFX("Button_Sound");
         GameObject cardInstance = Instantiate(cardPrefabList[index], randomPoint.position + offset, Quaternion.identity, randomPoint); // <- 부모 바로 설정
         GameManager.Instance.gold -= cost;
         cost += upgradeGold;

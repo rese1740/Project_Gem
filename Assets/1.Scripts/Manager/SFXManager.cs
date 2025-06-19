@@ -39,6 +39,7 @@ public class SFXManager : MonoBehaviour
         }
     }
 
+
     public void SetVolume(float volume)
     {
         sfxSource.volume = Mathf.Clamp01(volume);

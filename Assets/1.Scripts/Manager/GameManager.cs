@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        End_Panel.SetActive(false);
         currentTime = startTime;
         StartWave();
     }
@@ -248,6 +249,7 @@ public class GameManager : MonoBehaviour
     {
         if(gold >= goldUpGradeRequired)
         {
+            SFXManager.Instance.PlaySFX("Coin_Sound");
             maxGold += 15;
             gold -= goldUpGradeRequired;
             goldUpGradeRequired += 15;

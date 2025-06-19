@@ -59,7 +59,7 @@ public class Draggable2D : MonoBehaviour
 
             if (layerName == "Trash")
             {
-                Debug.Log("쓰레기통에 버림");
+                SFXManager.Instance.PlaySFX("Trash_Sound");
                 switch (myGem.currentRank) 
                 {
                     case 1:

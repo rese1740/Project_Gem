@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MouseHoverDetector : MonoBehaviour
@@ -19,10 +20,24 @@ public class MouseHoverDetector : MonoBehaviour
             // 이전에 바꿨던 오브젝트의 색상 복구
             if (lastRenderer != null && lastRenderer != sr)
             {
-                Color color = lastRenderer.color;
-                color.a = 10f;
-                origincolor = color;
-                lastRenderer.color = origincolor;
+                string layerName = LayerMask.LayerToName(hit.gameObject.layer);
+                if (layerName == "Trash")
+                {
+                    sr.color = Color.yellow;
+                    Color color = lastRenderer.color;
+                    color.a = 100f;
+                    origincolor = color;
+                    lastRenderer.color = origincolor;
+                }
+                else if (layerName == "DropZone")
+                {
+                    sr.color = Color.yellow;
+                    Color color = lastRenderer.color;
+                    color.a = 10f;
+                    origincolor = color;
+                    lastRenderer.color = origincolor;
+                }
+
             }
 
             if (sr != null)
@@ -41,9 +56,20 @@ public class MouseHoverDetector : MonoBehaviour
         {
             if (lastRenderer != null)
             {
-                origincolor = Color.white;
-                origincolor.a = 0.1f;
-                lastRenderer.color = origincolor;
+                string lastLayerName = LayerMask.LayerToName(lastRenderer.gameObject.layer);
+
+                Color restoreColor = Color.white;
+                if (lastLayerName == "Trash")
+                {
+                    restoreColor.a = 1f;
+                }
+                else if (lastLayerName == "DropZone")
+                {
+                    restoreColor.a = 0.1f;
+                }
+                   
+
+                lastRenderer.color = restoreColor;
                 lastRenderer = null;
             }
         }
